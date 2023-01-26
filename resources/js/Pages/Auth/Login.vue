@@ -3,33 +3,54 @@
         <!-- Breadcrumb -->
         <div>
             <AuthContainer>
+                <Notification class="mx-auto">
+                    <template #headline> Pranešimas </template>
+                    Sveiki atvykę į uždarą programuotojų, dizainerių platformą.
+                    Norėdami gauti pakvietimą, susisiekite su vienu iš projekte
+                    esančių vartotojų.
+                </Notification>
                 <div class="text-center font-bold text-3xl text-white">
                     Prisijungimas
                 </div>
-                <BaseInputGroup>
-                    <BaseLabel>El. pašto adresas</BaseLabel>
-                    <BaseInput type="text" icon="mail" />
-                </BaseInputGroup>
-                <BaseInputGroup>
-                    <BaseLabel>Slaptažodis</BaseLabel>
-                    <BaseInput :type="passwordType" icon="password">
-                        <template #leading>
-                            <button
-                                @click="togglePassword"
-                                class="flex cursor-pointer"
-                            >
-                                <Material
-                                    v-if="!showPassword"
-                                    icon="visibility"
-                                />
-                                <Material v-else icon="visibility_off" />
-                            </button>
-                        </template>
-                    </BaseInput>
-                </BaseInputGroup>
-                <div class="flex w-full">
-                    <BaseButton class="mt-5">Prisijungti</BaseButton>
-                </div>
+                <form @submit.prevent="submit" class="space-y-2">
+                    <BaseInputGroup>
+                        <BaseLabel>El. pašto adresas</BaseLabel>
+                        <BaseInput
+                            type="text"
+                            icon="mail"
+                            v-model="form.email"
+                        />
+                        <InputError class="mt-2" :message="form.errors.email" />
+                    </BaseInputGroup>
+                    <BaseInputGroup>
+                        <BaseLabel>Slaptažodis</BaseLabel>
+                        <BaseInput
+                            :type="passwordType"
+                            v-model="form.password"
+                            icon="password"
+                        >
+                            <template #leading>
+                                <button
+                                    @click="togglePassword"
+                                    class="flex cursor-pointer"
+                                    :class="{ 'opacity-25': form.processing }"
+                                    :disabled="form.processing"
+                                >
+                                    <Material
+                                        v-if="!showPassword"
+                                        icon="visibility"
+                                    />
+                                    <Material v-else icon="visibility_off" />
+                                </button>
+                            </template>
+                        </BaseInput>
+                        <InputError class="mt-2" :message="form.errors.email" />
+                    </BaseInputGroup>
+
+                    <div class="flex w-full">
+                        <BaseButton class="mt-5">Prisijungti</BaseButton>
+                    </div>
+                </form>
             </AuthContainer>
         </div>
     </GuestLayout>
@@ -44,6 +65,8 @@ import BaseInput from "@/Components/Base/Input.vue";
 import BaseLabel from "@/Components/Base/Label.vue";
 import BaseButton from "@/Components/Base/Button.vue";
 import Material from "@/Components/Material.vue";
+import InputError from "@/Components/InputError.vue";
+import Notification from "@/Components/Notification.vue";
 import { ref, computed } from "vue";
 
 defineProps({

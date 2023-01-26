@@ -1,12 +1,10 @@
 <?php
 
-use App\Http\Controllers\AppController;
+use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/app', [AppController::class, 'index'])->name('app');
+Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
+    Route::get('/app', function () {
+        return Inertia::render('App/Index');
+    })->name('dashboard');
 });

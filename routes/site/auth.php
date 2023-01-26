@@ -1,8 +1,10 @@
 <?php
 
-use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
-Route::get('/login', function () {
-    return Inertia::render('Auth/Login');
-});
+Route::controller(AuthController::class)
+    ->group(function () {
+        Route::get('/login', 'login');
+        Route::post('/login', 'loginUser')->name('login');
+    });

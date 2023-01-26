@@ -18,6 +18,7 @@
                         <BaseInput
                             type="text"
                             icon="mail"
+                            :required="true"
                             v-model="form.email"
                         />
                         <InputError class="mt-2" :message="form.errors.email" />
@@ -28,6 +29,7 @@
                             :type="passwordType"
                             v-model="form.password"
                             icon="password"
+                            :required="true"
                         >
                             <template #leading>
                                 <button
@@ -44,11 +46,16 @@
                                 </button>
                             </template>
                         </BaseInput>
-                        <InputError class="mt-2" :message="form.errors.email" />
+                        <InputError
+                            class="mt-2"
+                            :message="form.errors.password"
+                        />
                     </BaseInputGroup>
 
                     <div class="flex w-full">
-                        <BaseButton class="mt-5">Prisijungti</BaseButton>
+                        <BaseButton type="submit" class="mt-5"
+                            >Prisijungti</BaseButton
+                        >
                     </div>
                 </form>
             </AuthContainer>

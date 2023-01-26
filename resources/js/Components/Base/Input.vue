@@ -16,6 +16,7 @@
             :class="{
                 'px-12 py-2.5': icon,
             }"
+            :required="required"
             :placeholder="placeholder"
         />
         <div class="absolute inset-y-0 right-0 flex items-center pr-3">
@@ -42,6 +43,10 @@ defineProps({
         default: "",
     },
     modelValue: String,
+    required: {
+        type: Boolean,
+        default: false,
+    },
 });
 
 defineEmits(["update:modelValue"]);

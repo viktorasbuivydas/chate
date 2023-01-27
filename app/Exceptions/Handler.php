@@ -49,12 +49,6 @@ class Handler extends ExceptionHandler
         });
     }
 
-    /**
-     * Prepare exception for rendering.
-     *
-     * @param  \Throwable  $e
-     * @return \Throwable
-     */
     public function render($request, Throwable $e)
     {
         $response = parent::render($request, $e);

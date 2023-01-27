@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 
 class RolesTableSeeder extends Seeder
 {
@@ -14,6 +14,10 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $roles = collect(config('roles'));
+
+        $roles->each(function ($role) {
+            Role::create(['name' => $role, 'guard_name' => 'web']);
+        });
     }
 }

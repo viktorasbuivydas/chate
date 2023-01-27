@@ -9,7 +9,7 @@
                 <slot name="headline" />
             </span>
         </div>
-        <p class="text-sm text-blue-900 dark:text-blue-400">
+        <p class="text-sm text-blue-900 dark:text-blue-200">
             <slot />
         </p>
     </div>

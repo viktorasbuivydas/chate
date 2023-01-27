@@ -1,38 +1,5 @@
 <template>
-    <GuestLayout>
-        <!-- Breadcrumb -->
-        <div>
-            <AuthContainer>
-                <div class="text-center font-bold text-3xl text-white">
-                    Prisijungimas
-                </div>
-                <BaseInputGroup>
-                    <BaseLabel>El. pašto adresas</BaseLabel>
-                    <BaseInput type="text" icon="mail" />
-                </BaseInputGroup>
-                <BaseInputGroup>
-                    <BaseLabel>Slaptažodis</BaseLabel>
-                    <BaseInput :type="passwordType" icon="password">
-                        <template #leading>
-                            <button
-                                @click="togglePassword"
-                                class="flex cursor-pointer"
-                            >
-                                <Material
-                                    v-if="!showPassword"
-                                    icon="visibility"
-                                />
-                                <Material v-else icon="visibility_off" />
-                            </button>
-                        </template>
-                    </BaseInput>
-                </BaseInputGroup>
-                <div class="flex w-full">
-                    <BaseButton class="mt-5">Prisijungti</BaseButton>
-                </div>
-            </AuthContainer>
-        </div>
-    </GuestLayout>
+    <div></div>
 </template>
 
 <script setup>
@@ -44,6 +11,8 @@ import BaseInput from "@/Components/Base/Input.vue";
 import BaseLabel from "@/Components/Base/Label.vue";
 import BaseButton from "@/Components/Base/Button.vue";
 import Material from "@/Components/Material.vue";
+import InputError from "@/Components/InputError.vue";
+import Notification from "@/Components/Notification.vue";
 import { ref, computed } from "vue";
 
 defineProps({

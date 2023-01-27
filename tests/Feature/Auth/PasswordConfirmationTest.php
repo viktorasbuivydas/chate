@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\Auth;
 
+use Tests\TestCase;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 
 class PasswordConfirmationTest extends TestCase
 {
@@ -14,7 +14,7 @@ class PasswordConfirmationTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $response = $this->actingAs($user)->get('/confirm-password');
+        $response = $this->actingAs($user)->get('/user/confirm-password');
 
         $response->assertStatus(200);
     }
@@ -23,7 +23,7 @@ class PasswordConfirmationTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $response = $this->actingAs($user)->post('/confirm-password', [
+        $response = $this->actingAs($user)->post('/user/confirm-password', [
             'password' => 'password',
         ]);
 
@@ -35,7 +35,7 @@ class PasswordConfirmationTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $response = $this->actingAs($user)->post('/confirm-password', [
+        $response = $this->actingAs($user)->post('/user/confirm-password', [
             'password' => 'wrong-password',
         ]);
 

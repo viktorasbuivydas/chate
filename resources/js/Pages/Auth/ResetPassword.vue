@@ -1,84 +1,140 @@
+<template>
+    <GuestLayout>
+        <div>
+            <AuthContainer>
+                <div class="text-center font-bold text-3xl text-white">
+                    Slaptažodžio priminimas
+                </div>
+                <div
+                    v-if="status"
+                    class="mb-4 font-medium text-sm text-green-600"
+                >
+                    {{ status }}
+                </div>
+                <form @submit.prevent="submit" class="space-y-2">
+                    <BaseInputGroup>
+                        <BaseLabel>El. pašto adresas</BaseLabel>
+                        <BaseInput
+                            type="text"
+                            icon="mail"
+                            :required="true"
+                            v-model="form.email"
+                            autocomplete="email"
+                        />
+                        <InputError class="mt-2" :message="form.errors.email" />
+                    </BaseInputGroup>
+                    <BaseInputGroup>
+                        <BaseLabel>Slaptažodis</BaseLabel>
+                        <BaseInput
+                            :type="passwordType"
+                            v-model="form.password"
+                            icon="password"
+                            :required="true"
+                        >
+                            <template #leading>
+                                <button
+                                    @click="togglePassword"
+                                    class="flex cursor-pointer"
+                                    :class="{ 'opacity-25': form.processing }"
+                                    :disabled="form.processing"
+                                    type="button"
+                                >
+                                    <Material
+                                        v-if="!showPassword"
+                                        icon="visibility"
+                                    />
+                                    <Material v-else icon="visibility_off" />
+                                </button>
+                            </template>
+                        </BaseInput>
+                        <InputError
+                            class="mt-2"
+                            :message="form.errors.password"
+                        />
+                    </BaseInputGroup>
+
+                    <BaseInputGroup>
+                        <BaseLabel>Pakartokite slaptažodį</BaseLabel>
+                        <BaseInput
+                            :type="passwordType"
+                            v-model="form.password_confirmation"
+                            icon="password"
+                            :required="true"
+                        >
+                            <template #leading>
+                                <button
+                                    type="button"
+                                    @click="togglePassword"
+                                    class="flex cursor-pointer"
+                                    :class="{ 'opacity-25': form.processing }"
+                                    :disabled="form.processing"
+                                >
+                                    <Material
+                                        v-if="!showPassword"
+                                        icon="visibility"
+                                    />
+                                    <Material v-else icon="visibility_off" />
+                                </button>
+                            </template>
+                        </BaseInput>
+                        <InputError
+                            class="mt-2"
+                            :message="form.errors.password_confirmation"
+                        />
+                    </BaseInputGroup>
+
+                    <div class="flex w-full">
+                        <BaseButton
+                            type="submit"
+                            :class="{ 'opacity-25': form.processing }"
+                            :disabled="form.processing"
+                            class="mt-5"
+                            >Prisijungti</BaseButton
+                        >
+                    </div>
+                </form>
+            </AuthContainer>
+        </div>
+    </GuestLayout>
+</template>
+
 <script setup>
-import { Head, useForm } from '@inertiajs/inertia-vue3';
-import AuthenticationCard from '@/Components/AuthenticationCard.vue';
-import AuthenticationCardLogo from '@/Components/AuthenticationCardLogo.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
+import { useForm } from "@inertiajs/inertia-vue3";
+import GuestLayout from "@/Layouts/GuestLayout.vue";
+import AuthContainer from "@/Components/Auth/Container.vue";
+import BaseInputGroup from "@/Components/Base/InputGroup.vue";
+import BaseInput from "@/Components/Base/Input.vue";
+import BaseLabel from "@/Components/Base/Label.vue";
+import BaseButton from "@/Components/Base/Button.vue";
+import InputError from "@/Components/InputError.vue";
+import Material from "@/Components/Material.vue";
+import { ref, computed } from "vue";
 
 const props = defineProps({
     email: String,
     token: String,
 });
 
+const showPassword = ref(false);
+
 const form = useForm({
     token: props.token,
     email: props.email,
-    password: '',
-    password_confirmation: '',
+    password: "",
+    password_confirmation: "",
 });
 
 const submit = () => {
-    form.post(route('password.update'), {
-        onFinish: () => form.reset('password', 'password_confirmation'),
+    form.post(route("password.update"), {
+        onFinish: () => form.reset("password", "password_confirmation"),
     });
 };
+
+const passwordType = computed(() => {
+    return showPassword.value ? "text" : "password";
+});
+
+const togglePassword = () => {
+    showPassword.value = !showPassword.value;
+};
 </script>
-
-<template>
-    <Head title="Reset Password" />
-
-    <AuthenticationCard>
-        <template #logo>
-            <AuthenticationCardLogo />
-        </template>
-
-        <form @submit.prevent="submit">
-            <div>
-                <InputLabel for="email" value="Email" />
-                <TextInput
-                    id="email"
-                    v-model="form.email"
-                    type="email"
-                    class="mt-1 block w-full"
-                    required
-                    autofocus
-                />
-                <InputError class="mt-2" :message="form.errors.email" />
-            </div>
-
-            <div class="mt-4">
-                <InputLabel for="password" value="Password" />
-                <TextInput
-                    id="password"
-                    v-model="form.password"
-                    type="password"
-                    class="mt-1 block w-full"
-                    required
-                    autocomplete="new-password"
-                />
-                <InputError class="mt-2" :message="form.errors.password" />
-            </div>
-
-            <div class="mt-4">
-                <InputLabel for="password_confirmation" value="Confirm Password" />
-                <TextInput
-                    id="password_confirmation"
-                    v-model="form.password_confirmation"
-                    type="password"
-                    class="mt-1 block w-full"
-                    required
-                    autocomplete="new-password"
-                />
-                <InputError class="mt-2" :message="form.errors.password_confirmation" />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Reset Password
-                </PrimaryButton>
-            </div>
-        </form>
-    </AuthenticationCard>
-</template>

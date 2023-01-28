@@ -1,3 +1,7 @@
+<template>
+    <component :is="error" />
+</template>
+
 <script setup>
 import { computed } from "vue";
 import NotFound from "@/Components/Errors/404.vue";
@@ -16,7 +20,3 @@ const error = computed(() => {
     }[props.status];
 });
 </script>
-
-<template>
-    <component :is="error" />
-</template>

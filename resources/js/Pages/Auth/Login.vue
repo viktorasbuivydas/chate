@@ -1,6 +1,5 @@
 <template>
     <GuestLayout>
-        <!-- Breadcrumb -->
         <div>
             <AuthContainer>
                 <Notification class="mx-auto">

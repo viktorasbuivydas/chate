@@ -1,74 +1,175 @@
 <template>
     <ol class="relative border-l border-gray-200 dark:border-gray-700">
-        <li class="mb-10 ml-4">
+        <li class="mb-10 ml-4" v-for="roadmap in roadmaps">
             <div
                 class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"
             ></div>
-            <time
-                class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500"
-                >February 2022</time
-            >
+
             <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                Application UI code in Tailwind CSS
+                {{ roadmap.title }}
             </h3>
-            <p
-                class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400"
-            >
-                Get access to over 20+ pages including a dashboard layout,
-                charts, kanban board, calendar, and pre-order E-commerce &
-                Marketing pages.
+            <p class="text-base font-normal text-gray-500 dark:text-gray-400">
+                {{ roadmap.description }}
             </p>
-            <a
-                href="#"
-                class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-200 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"
-                >Learn more
-                <svg
-                    class="w-3 h-3 ml-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
+            <ul class="flex flex-col mt-2">
+                <li
+                    v-for="item in roadmap.items"
+                    class="flex space-y-1 space-x-2 items-center"
                 >
-                    <path
-                        fill-rule="evenodd"
-                        d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                        clip-rule="evenodd"
-                    ></path>
-                </svg>
-            </a>
-        </li>
-        <li class="mb-10 ml-4">
-            <div
-                class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"
-            ></div>
-            <time
-                class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500"
-                >March 2022</time
-            >
-            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                Marketing UI design in Figma
-            </h3>
-            <p class="text-base font-normal text-gray-500 dark:text-gray-400">
-                All of the pages and components are first designed in Figma and
-                we keep a parity between the two versions even as we update the
-                project.
-            </p>
-        </li>
-        <li class="ml-4">
-            <div
-                class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"
-            ></div>
-            <time
-                class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500"
-                >April 2022</time
-            >
-            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                E-Commerce UI code in Tailwind CSS
-            </h3>
-            <p class="text-base font-normal text-gray-500 dark:text-gray-400">
-                Get started with dozens of web components and interactive
-                elements built on top of Tailwind CSS.
-            </p>
+                    <div class="flex items-center">
+                        <Material
+                            icon="done"
+                            v-if="item.done"
+                            class="text-green-500"
+                        />
+                        <Material icon="close" v-else class="text-red-500" />
+                    </div>
+                    <div>{{ item.title }}</div>
+                </li>
+            </ul>
         </li>
     </ol>
 </template>
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+import Material from "@/Components/Material.vue";
+
+const roadmaps = ref([
+    {
+        title: "Autentifikacija",
+        description:
+            "Visos reikiamos funkcijos susijusios su autentifikacija, registracija, slaptažodžio atstatymas ir panašiai.",
+        items: [
+            {
+                title: "Prisijungimas",
+                done: true,
+            },
+            {
+                title: "Slaptažodžio atstatymas",
+                done: true,
+            },
+            {
+                title: "Slaptažodžio keitimas",
+                done: false,
+            },
+            {
+                title: "Prašymas gauti kodą",
+                done: false,
+            },
+            {
+                title: "2FA",
+                done: false,
+            },
+        ],
+    },
+    {
+        title: "Vartotojo profilis",
+        description:
+            "Visos funkcijos, kurios reikalingos pilnam paskyros valdymui.",
+        items: [
+            {
+                title: "Profilio informacijos keitimas",
+                done: false,
+            },
+            {
+                title: "Profilio nuotraukos keitimas",
+                done: false,
+            },
+            {
+                title: "Slaptažodžio keitimas",
+                done: false,
+            },
+            {
+                title: "Projektų sąrašo valdymas",
+                done: false,
+            },
+            {
+                title: "Profilio aprašymo keitimas",
+                done: false,
+            },
+        ],
+    },
+    {
+        title: "PM",
+        description:
+            "Visos funkcijos, kurios reikalingos žinučių siuntimui ir gavimui.",
+        items: [
+            {
+                title: "Žinučių siuntimas",
+                done: false,
+            },
+            {
+                title: "Žinučių gavimas",
+                done: false,
+            },
+            {
+                title: "Žinučių archyvavimas",
+                done: false,
+            },
+            {
+                title: "Žinučių šalinimas",
+                done: false,
+            },
+            {
+                title: "Juodasis sąrašas",
+                done: false,
+            },
+        ],
+    },
+    {
+        title: "Pokalbiai",
+        description: "Visos funkcijos, kurios reikalingos pokalbių kanalui",
+        items: [
+            {
+                title: "Žinučių siuntimas",
+                done: false,
+            },
+            {
+                title: "Atsakymas į žinutę",
+                done: false,
+            },
+            {
+                title: "Galimybė įrašius @ skirti žinutę tam tikram vartotojui",
+                done: false,
+            },
+        ],
+    },
+    {
+        title: "Forumas",
+        description: "Visos funkcijos, kurios reikalingos forumui",
+        items: [
+            {
+                title: "Temos kūrimas",
+                done: false,
+            },
+            {
+                title: "Žinutės rašymas",
+                done: false,
+            },
+        ],
+    },
+    {
+        title: "Pamokos",
+        description:
+            "Visos funkcijos, kurios reikalingos pamokų skaitymui ir kūrimui",
+        items: [
+            {
+                title: "Pamokų kūrimas",
+                done: false,
+            },
+            {
+                title: "Pamokų skaitymas",
+                done: false,
+            },
+            {
+                title: "Pamokų redagavimas",
+                done: false,
+            },
+            {
+                title: "Pamokų šalinimas",
+                done: false,
+            },
+        ],
+    },
+]);
+</script>

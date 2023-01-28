@@ -19,6 +19,7 @@ $twoFactorLimiter = config('fortify.limiters.two-factor');
 $verificationLimiter = config('fortify.limiters.verification', '6,1');
 
 Route::controller(AuthenticatedSessionController::class)
+    ->middleware('guest:' . config('fortify.guard'))
     ->group(function () use ($limiter) {
         Route::get('/login', 'create')->name('login');
         Route::post('/login', 'store')

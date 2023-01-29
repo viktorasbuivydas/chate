@@ -2,9 +2,9 @@
     <div class="flex grow-0">
         <nav class="flex" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-3">
-                <li class="inline-flex items-center">
-                    <a
-                        href="#"
+                <li class="inline-flex items-center" v-if="showAppItem">
+                    <Link
+                        :href="route('app.index')"
                         class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white"
                     >
                         <svg
@@ -19,9 +19,9 @@
                             ></path>
                         </svg>
                         Pradinis
-                    </a>
+                    </Link>
                 </li>
-                <li>
+                <li v-if="previousPage">
                     <div class="flex items-center">
                         <svg
                             aria-hidden="true"
@@ -36,14 +36,15 @@
                                 clip-rule="evenodd"
                             ></path>
                         </svg>
-                        <a
-                            href="#"
+                        <Link
+                            :href="previousPage.route"
                             class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white"
-                            >Projects</a
+                        >
+                            {{ previousPage.title }}</Link
                         >
                     </div>
                 </li>
-                <li aria-current="page">
+                <li aria-current="page" v-if="currentPage">
                     <div class="flex items-center">
                         <svg
                             aria-hidden="true"
@@ -60,7 +61,7 @@
                         </svg>
                         <span
                             class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400"
-                            >Flowbite</span
+                            >{{ currentPage }}</span
                         >
                     </div>
                 </li>
@@ -69,4 +70,22 @@
     </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { Link } from "@inertiajs/inertia-vue3";
+
+defineProps({
+    previousPage: {
+        type: Array,
+        required: false,
+    },
+    currentPage: {
+        type: [String],
+        required: true,
+    },
+    showAppItem: {
+        type: Boolean,
+        required: true,
+        default: false,
+    },
+});
+</script>

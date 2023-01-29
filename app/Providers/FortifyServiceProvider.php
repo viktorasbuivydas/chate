@@ -3,9 +3,11 @@
 namespace App\Providers;
 
 use Illuminate\Http\Request;
+use Laravel\Fortify\Fortify;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Support\Facades\RateLimiter;
+use App\Actions\Profile\UpdateUserProfileInformation;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -22,6 +24,14 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
+        Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
+        Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
+
+        Fortify::twoFactorChallengeView(function () {
+            return inertia('Auth/TwoFactorChallenge');
+        });
+
         RateLimiter::for('login', function (Request $request) {
             $email = (string) $request->email;
 

@@ -6,12 +6,7 @@
                     This is a secure area of the application. Please confirm
                     your password before continuing.
                 </div>
-                <div
-                    v-if="status"
-                    class="mb-4 font-medium text-sm text-green-600"
-                >
-                    {{ status }}
-                </div>
+
                 <form @submit.prevent="submit" class="space-y-2">
                     <BaseInputGroup>
                         <BaseLabel>Slaptažodis</BaseLabel>

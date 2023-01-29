@@ -89,7 +89,7 @@
                             :class="{ 'opacity-25': form.processing }"
                             :disabled="form.processing"
                             class="mt-5"
-                            >Prisijungti</BaseButton
+                            >Pakeisti slaptažodį</BaseButton
                         >
                     </div>
                 </form>

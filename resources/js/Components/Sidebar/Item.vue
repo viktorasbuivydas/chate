@@ -1,8 +1,11 @@
 <template>
     <li>
         <Link
-            :href="route_url"
+            :href="link"
             class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+            :class="{
+                'bg-gray-700': route().current().startsWith(activeStart),
+            }"
         >
             <template v-if="icon">
                 <Material :icon="icon" />
@@ -37,9 +40,13 @@ defineProps({
         type: String,
         required: false,
     },
-    route_url: {
+    link: {
         type: String,
         required: true,
+    },
+    activeStart: {
+        type: String,
+        required: false,
     },
 });
 </script>

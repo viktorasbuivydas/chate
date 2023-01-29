@@ -18,19 +18,30 @@
                             type="text"
                             icon="mail"
                             :required="true"
+                            @change="inputChanged"
                             v-model="form.email"
                         />
                         <InputError class="mt-2" :message="form.errors.email" />
                     </BaseInputGroup>
 
-                    <div class="flex w-full">
-                        <BaseButton
-                            type="submit"
-                            :class="{ 'opacity-25': form.processing }"
-                            :disabled="form.processing && success"
-                            class="mt-5"
-                            >Prisijungti</BaseButton
+                    <div class="flex flex-col w-fit">
+                        <ActionMessage
+                            :on="ForgotPasswordRequestSentSuccessfully"
+                            class="mr-3"
                         >
+                            Jeigu el. pašto adresas įvestas teisingai, kelių
+                            minučių bėgyje išsiųsime laišką su slaptažodžio
+                            atkūrimo nuoroda.
+                        </ActionMessage>
+                        <div>
+                            <BaseButton
+                                type="submit"
+                                :class="{ 'opacity-25': form.processing }"
+                                :disabled="form.processing"
+                                class="mt-5"
+                                >Priminti</BaseButton
+                            >
+                        </div>
                     </div>
                 </form>
             </AuthContainer>
@@ -47,11 +58,14 @@ import BaseInput from "@/Components/Base/Input.vue";
 import BaseLabel from "@/Components/Base/Label.vue";
 import BaseButton from "@/Components/Base/Button.vue";
 import InputError from "@/Components/InputError.vue";
+import ActionMessage from "@/Components/ActionMessage.vue";
 import { ref } from "vue";
 
 defineProps({
     status: String,
 });
+
+const ForgotPasswordRequestSentSuccessfully = ref(false);
 
 const form = useForm({
     email: "",
@@ -65,6 +79,14 @@ const submit = () => {
             form.reset("email");
             success.value = true;
         },
+        onSuccess: () => {
+            ForgotPasswordRequestSentSuccessfully.value = true;
+        },
     });
+};
+
+const inputChanged = () => {
+    ForgotPasswordRequestSentSuccessfully.value = false;
+    form.clearErrors();
 };
 </script>

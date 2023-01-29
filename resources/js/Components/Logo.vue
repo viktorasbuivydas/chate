@@ -1,5 +1,5 @@
 <template>
-    <Link class="flex items-center">
+    <Link class="flex items-center" href="/">
         <svg
             id="logo"
             enable-background="new 0 0 300 300"

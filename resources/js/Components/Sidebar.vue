@@ -17,65 +17,74 @@
                     >CHATE.LT</span
                 >
             </a>
-            <ul class="space-y-2">
-                <SidebarItem icon="home" label="Pagrindinis" route_url="/app" />
-                <SidebarItem
-                    icon="chat"
-                    label="Pokalbiai"
-                    route_url="/app/chat"
-                    count="5"
-                />
-                <SidebarItem
+            <div class="flex flex-col">
+                <ul class="flex flex-col space-y-2">
+                    <SidebarItem
+                        icon="home"
+                        label="Pagrindinis"
+                        :link="route('app.index')"
+                        active-start="app.index"
+                    />
+                    <SidebarItem
+                        icon="chat"
+                        label="Pokalbiai"
+                        route="/app/chat"
+                        :link="route('app.chat.index')"
+                        active-start="app.chat."
+                        count="5"
+                    />
+                    <!-- <SidebarItem
                     icon="forum"
                     label="Forumas"
-                    route_url="/app/forum"
+                    route="/app/forum"
                     badge="3/10"
                 />
                 <SidebarItem
                     icon="folder"
                     label="Failai"
-                    route_url="/app/files"
+                    route="/app/files"
                 />
                 <SidebarItem
                     icon="school"
                     label="Pamokos"
-                    route_url="/app/tutorials"
+                    route="/app/tutorials"
                 />
                 <SidebarItem
                     icon="signal_cellular_alt"
                     label="Statistika"
-                    route_url="/app/statistic"
+                    route="/app/statistic"
                 />
                 <SidebarItem
                     icon="person"
                     label="Profilis"
-                    route_url="/app/profile"
+                    route="/app/profile"
                 />
                 <SidebarItem
                     icon="settings"
                     label="Nustatymai"
-                    route_url="/app/settings"
+                    route="/app/settings"
                 />
                 <SidebarItem
                     icon="admin_panel_settings"
                     label="Valdymas"
-                    route_url="/app/cpanel"
+                    route="/app/cpanel"
                 />
                 <SidebarItem
                     icon="toggle_on"
                     label="Prisijungę"
-                    route_url="/app/online"
+                    route="/app/online"
                     count="5"
-                />
-            </ul>
+                /> -->
+                </ul>
 
-            <Notification>
-                <template #headline> Pranešimas </template>
-                <div>
-                    WORK IN PROGRESS WORK IN PROGRESS WORK IN PROGRESS WORK IN
-                    PROGRESS
-                </div>
-            </Notification>
+                <Notification>
+                    <template #headline> Pranešimas </template>
+                    <div>
+                        WORK IN PROGRESS WORK IN PROGRESS WORK IN PROGRESS WORK
+                        IN PROGRESS
+                    </div>
+                </Notification>
+            </div>
         </div>
     </aside>
 </template>

@@ -4,9 +4,12 @@
         <div class="grid grid-cols-3 gap-5 mt-10 w-full">
             <div class="col-span-2">
                 <div class="font-bold text-xl">Naujienos</div>
-                <div class="mt-10">
-                    <Roadmap />
-                </div>
+                <!-- Naujausios pamokos -->
+                <!-- Naujausi siuntiniai -->
+                <!-- Naujausios forumo temos -->
+                <!-- Naujausi irankiai -->
+                <!-- Naujausi nariai -->
+                <div class="mt-10">hello</div>
             </div>
             <div>
                 <Online />
@@ -18,6 +21,5 @@
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
 import Breadcrumbs from "@/Components/Breadcrumbs.vue";
-import Roadmap from "@/Components/Roadmap.vue";
 import Online from "@/Components/Online.vue";
 </script>

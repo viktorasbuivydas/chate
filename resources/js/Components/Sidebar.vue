@@ -80,8 +80,13 @@
                 <Notification>
                     <template #headline> Pranešimas </template>
                     <div>
-                        WORK IN PROGRESS WORK IN PROGRESS WORK IN PROGRESS WORK
-                        IN PROGRESS
+                        <Link href="/" class="font-bold text-gray-300"
+                            >Viktoras:</Link
+                        >
+                        Kuriama... Jei turite klausimų, galite susisiekti
+                    </div>
+                    <div class="text-xs mt-2">
+                        (Parašė: 2023m. Sausio 22d. - 22val. 41min)
                     </div>
                 </Notification>
             </div>
@@ -92,6 +97,7 @@
 <script setup>
 import SidebarItem from "@/Components/Sidebar/Item.vue";
 import Notification from "@/Components/Notification.vue";
+import { Link } from "@inertiajs/inertia-vue3";
 
 const logout = () => {
     Inertia.post(route("logout"));

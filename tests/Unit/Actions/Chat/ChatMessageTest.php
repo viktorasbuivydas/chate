@@ -3,8 +3,11 @@
 namespace Tests\Unit\Actions\Chat;
 
 use Tests\TestCase;
+use App\Events\MessageSent;
+use App\Events\ChatMessageSent;
 use App\Actions\Chat\CreateMessage;
 use Tests\Support\Traits\UserTrait;
+use Illuminate\Support\Facades\Event;
 
 class ChatMessageTest extends TestCase
 {
@@ -16,6 +19,8 @@ class ChatMessageTest extends TestCase
      */
     public function test_it_can_create_chat_message()
     {
+        Event::fake();
+
         $user = $this->createUser();
 
         $data = [
@@ -27,5 +32,7 @@ class ChatMessageTest extends TestCase
 
         $this->assertDatabaseHas('chat_messages', $data);
         $this->assertDatabaseCount('chat_messages', 1);
+
+        Event::assertDispatched(fn (ChatMessageSent $event) => $event->message === $data['message']);
     }
 }

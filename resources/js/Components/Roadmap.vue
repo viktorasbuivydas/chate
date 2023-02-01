@@ -1,5 +1,8 @@
 <template>
     <ol class="relative border-l border-gray-200 dark:border-gray-700">
+        <div class="text-center font-bold text-xl mb-4">
+            Projekto startui reikalingos funkcijos
+        </div>
         <li class="mb-10 ml-4" v-for="roadmap in roadmaps">
             <div
                 class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"
@@ -50,14 +53,10 @@ const roadmaps = ref([
             },
             {
                 title: "Slaptažodžio keitimas",
-                done: false,
+                done: true,
             },
             {
                 title: "Prašymas gauti kodą",
-                done: false,
-            },
-            {
-                title: "2FA",
                 done: false,
             },
         ],
@@ -69,7 +68,7 @@ const roadmaps = ref([
         items: [
             {
                 title: "Profilio informacijos keitimas",
-                done: false,
+                done: true,
             },
             {
                 title: "Profilio nuotraukos keitimas",
@@ -77,7 +76,7 @@ const roadmaps = ref([
             },
             {
                 title: "Slaptažodžio keitimas",
-                done: false,
+                done: true,
             },
             {
                 title: "Projektų sąrašo valdymas",
@@ -125,11 +124,19 @@ const roadmaps = ref([
                 done: false,
             },
             {
+                title: "Žinučių koregavimas",
+                done: false,
+            },
+            {
                 title: "Atsakymas į žinutę",
                 done: false,
             },
             {
                 title: "Galimybė įrašius @ skirti žinutę tam tikram vartotojui",
+                done: false,
+            },
+            {
+                title: "Paveiksliukų/nuotraukų kėlimas",
                 done: false,
             },
         ],
@@ -167,6 +174,32 @@ const roadmaps = ref([
             },
             {
                 title: "Pamokų šalinimas",
+                done: false,
+            },
+        ],
+    },
+    {
+        title: "Statistika",
+        description: "Visos funkcijos, kurios reikalingos statistikai",
+        items: [
+            {
+                title: "Vartotojų statistika",
+                done: false,
+            },
+            {
+                title: "Parašytų chat/pm žinučių statistika",
+                done: false,
+            },
+            {
+                title: "Parašytų forumo žinučių statistika",
+                done: false,
+            },
+            {
+                title: "Parašytų pamokų statistika",
+                done: false,
+            },
+            {
+                title: "Reputacijos statistika",
                 done: false,
             },
         ],

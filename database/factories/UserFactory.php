@@ -4,11 +4,13 @@ namespace Database\Factories;
 
 use App\Models\User;
 use Illuminate\Support\Str;
+use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 
 class UserFactory extends Factory
 {
+    use WithFaker;
     /**
      * The name of the factory's corresponding model.
      *

@@ -1,7 +1,9 @@
 <template>
     <AppLayout>
         <Breadcrumbs :show-app-item="true" current-page="Pokalbiai" />
-
+        <div class="text-sm mt-2 text-gray-300">
+            Aktyvių: {{ online.length }}
+        </div>
         <ChatSection>
             <template #messages>
                 <!-- chat messages -->
@@ -10,7 +12,7 @@
                         class="max-w-5xl mx-auto space-y-6 grid grid-cols-1 text-gray-500"
                     >
                         <ChatMessage
-                            v-for="message in messages"
+                            v-for="message in allMessages"
                             name="test"
                             :content="message.message"
                             type="sender"
@@ -44,13 +46,40 @@ import Breadcrumbs from "@/Components/Breadcrumbs.vue";
 import ChatSection from "@/Components/ChatSection.vue";
 import ChatMessage from "@/Components/Chat/Message.vue";
 import ChatInput from "@/Components/Chat/Input.vue";
+import { reload } from "@inertiajs/inertia-vue3";
 
-defineProps({
+import { defineProps, computed, onMounted, onUnmounted, ref } from "vue";
+
+const props = defineProps({
     messages: {
         type: Array,
         required: true,
     },
 });
 
-window.Echo.join("chat").here((users) => console.log(users));
+const users = ref([]);
+const chatMessages = ref(props.messages);
+
+onMounted(() => {
+    window.Echo.join("chat")
+        .here((chatUsers) => {
+            users.value = chatUsers;
+        })
+        .joining((user) => {
+            users.value.push(user);
+        })
+        .leaving((user) => {
+            users.value = users.value.filter((u) => u.id !== user.id);
+        })
+        .listen("ChatMessageSent", (event) => {
+            chatMessages.value.push(event);
+        });
+});
+
+onUnmounted(() => {
+    window.Echo.leave("chat");
+});
+
+const online = computed(() => users.value);
+const allMessages = computed(() => chatMessages.value);
 </script>

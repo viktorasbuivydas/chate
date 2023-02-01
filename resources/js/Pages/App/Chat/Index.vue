@@ -12,8 +12,8 @@
                         class="max-w-5xl mx-auto space-y-6 grid grid-cols-1 text-gray-500"
                     >
                         <ChatMessage
-                            v-for="message in allMessages"
-                            name="test"
+                            v-for="message in messages"
+                            :name="message.user.name"
                             :content="message.message"
                             type="sender"
                         />
@@ -46,7 +46,6 @@ import Breadcrumbs from "@/Components/Breadcrumbs.vue";
 import ChatSection from "@/Components/ChatSection.vue";
 import ChatMessage from "@/Components/Chat/Message.vue";
 import ChatInput from "@/Components/Chat/Input.vue";
-import { reload } from "@inertiajs/inertia-vue3";
 
 import { defineProps, computed, onMounted, onUnmounted, ref } from "vue";
 
@@ -58,12 +57,11 @@ const props = defineProps({
 });
 
 const users = ref([]);
-const chatMessages = ref(props.messages);
 
 onMounted(() => {
     window.Echo.join("chat")
-        .here((chatUsers) => {
-            users.value = chatUsers;
+        .here((people) => {
+            users.value = people;
         })
         .joining((user) => {
             users.value.push(user);
@@ -72,7 +70,7 @@ onMounted(() => {
             users.value = users.value.filter((u) => u.id !== user.id);
         })
         .listen("ChatMessageSent", (event) => {
-            chatMessages.value.push(event);
+            props.messages.splice(0, 0, event);
         });
 });
 
@@ -81,5 +79,4 @@ onUnmounted(() => {
 });
 
 const online = computed(() => users.value);
-const allMessages = computed(() => chatMessages.value);
 </script>

@@ -9,7 +9,7 @@ class ChatController extends Controller
 {
     public function index()
     {
-        $messages = ChatMessage::latest()->get();
+        $messages = ChatMessage::with('user')->latest()->get();
         return inertia('App/Chat/Index', [
             'messages' => $messages,
         ]);

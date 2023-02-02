@@ -4,7 +4,7 @@
             {{ name }}
             <div class="flex items-center space-x-2">
                 <div
-                    class="bg-indigo-500 text-white p-3 rounded-2xl rounded-tl-none"
+                    class="bg-indigo-500 text-white p-2 rounded-2xl rounded-tl-none"
                 >
                     {{ content }}
                 </div>
@@ -22,7 +22,7 @@
             {{ name }}
             <div class="flex items-center space-x-2">
                 <div
-                    class="bg-yellow-500 text-white p-3 rounded-2xl rounded-tl-none"
+                    class="bg-yellow-500 text-white p-2 rounded-2xl rounded-tl-none"
                 >
                     {{ content }}
                 </div>
@@ -46,7 +46,7 @@
                     <More v-if="openedMore" />
                 </div>
                 <div
-                    class="bg-blue-500 text-white p-3 rounded-2xl rounded-tr-none"
+                    class="bg-blue-500 text-white p-2 rounded-2xl rounded-tr-none"
                 >
                     {{ content }}
                 </div>

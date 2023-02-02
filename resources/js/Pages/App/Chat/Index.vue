@@ -5,7 +5,6 @@
         >
             Pokalbiuose: {{ online.length }}
         </div>
-        {{ messages.length }}
         <ChatSection>
             <template #messages>
                 <!-- chat messages -->
@@ -18,7 +17,7 @@
                 </div>
                 <div class="min-h-[calc(100vh-10px)] bg-gray-800 p-4">
                     <div
-                        class="relative max-w-5xl mx-auto space-y-6 grid grid-cols-1 text-gray-500 pb-2"
+                        class="relative max-w-5xl mx-auto space-y-2 grid grid-cols-1 text-gray-500 pb-2"
                     >
                         <template v-for="message in allMessages">
                             <template v-if="user.name === message.user.name">

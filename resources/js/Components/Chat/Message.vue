@@ -1,5 +1,4 @@
 <template>
-    <!-- other persone message -->
     <template v-if="type === 'sender'">
         <div class="place-self-start relative">
             {{ name }}
@@ -10,7 +9,7 @@
                     {{ content }}
                 </div>
                 <div>
-                    <button @click="toggleMore">
+                    <button>
                         <Material icon="more_vert" />
                     </button>
                     <More v-if="openedMore" />
@@ -18,7 +17,6 @@
             </div>
         </div>
     </template>
-    <!-- sender mentioned me -->
     <template v-if="type === 'mentioning'">
         <div class="place-self-start relative">
             {{ name }}
@@ -29,7 +27,7 @@
                     {{ content }}
                 </div>
                 <div>
-                    <button @click="toggleMore">
+                    <button>
                         <Material icon="more_vert" />
                     </button>
                     <More v-if="openedMore" />
@@ -37,13 +35,12 @@
             </div>
         </div>
     </template>
-    <!-- my message -->
     <template v-if="type === 'receiver'">
         <div class="place-self-end text-right relative">
             {{ name }}
             <div class="flex items-center space-x-2">
                 <div>
-                    <button @click="toggleMore">
+                    <button>
                         <Material icon="more_vert" />
                     </button>
                     <More v-if="openedMore" />

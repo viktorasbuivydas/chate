@@ -11,13 +11,22 @@
                     <div
                         class="max-w-5xl mx-auto space-y-6 grid grid-cols-1 text-gray-500"
                     >
-                        <ChatMessage
-                            v-for="message in messages"
-                            :name="message.user.name"
-                            :content="message.message"
-                            type="sender"
-                        />
-
+                        <template v-for="message in messages">
+                            <template v-if="user.name === message.user.name">
+                                <ChatMessage
+                                    :name="message.user.name"
+                                    :content="message.message"
+                                    type="receiver"
+                                />
+                            </template>
+                            <template v-else>
+                                <ChatMessage
+                                    :name="message.user.name"
+                                    :content="message.message"
+                                    type="sender"
+                                />
+                            </template>
+                        </template>
                         <!-- <ChatMessage name="test" content="test" type="sender" />
                         <ChatMessage
                             name="test"
@@ -48,6 +57,7 @@ import ChatMessage from "@/Components/Chat/Message.vue";
 import ChatInput from "@/Components/Chat/Input.vue";
 
 import { defineProps, computed, onMounted, onUnmounted, ref } from "vue";
+import { usePage } from "@inertiajs/inertia-vue3";
 
 const props = defineProps({
     messages: {
@@ -79,4 +89,5 @@ onUnmounted(() => {
 });
 
 const online = computed(() => users.value);
+const user = computed(() => usePage().props.value.auth.user);
 </script>

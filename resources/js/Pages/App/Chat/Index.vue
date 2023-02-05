@@ -28,11 +28,20 @@
                                 />
                             </template>
                             <template v-else>
-                                <ChatMessage
-                                    :name="message.user.name"
-                                    :content="message.message"
-                                    type="sender"
-                                />
+                                <template v-if="isMessageToMe(message.message)">
+                                    <ChatMessage
+                                        :name="message.user.name"
+                                        :content="message.message"
+                                        type="mentioning"
+                                    />
+                                </template>
+                                <template v-else>
+                                    <ChatMessage
+                                        :name="message.user.name"
+                                        :content="message.message"
+                                        type="sender"
+                                    />
+                                </template>
                             </template>
                         </template>
                         <!-- <ChatMessage name="test" content="test" type="sender" />
@@ -65,7 +74,6 @@ import ChatInput from "@/Components/Chat/Input.vue";
 import useScroll from "@/Use/useScroll.js";
 import InfiniteLoading from "v3-infinite-loading";
 import "v3-infinite-loading/lib/style.css";
-
 import { computed, onMounted, onUnmounted, ref } from "vue";
 import { usePage } from "@inertiajs/inertia-vue3";
 import axios from "axios";
@@ -134,4 +142,8 @@ const allMessages = computed(() => {
         return a.id - b.id;
     });
 });
+
+const isMessageToMe = (message) => {
+    return message.includes("@" + user.value.name);
+};
 </script>

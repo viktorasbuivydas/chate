@@ -60,21 +60,11 @@
                     route="/app/profile"
                 />
                 <SidebarItem
-                    icon="settings"
-                    label="Nustatymai"
-                    route="/app/settings"
-                />
-                <SidebarItem
                     icon="admin_panel_settings"
                     label="Valdymas"
                     route="/app/cpanel"
                 />
-                <SidebarItem
-                    icon="toggle_on"
-                    label="Prisijungę"
-                    route="/app/online"
-                    count="5"
-                /> -->
+                    -->
                 </ul>
 
                 <Notification>

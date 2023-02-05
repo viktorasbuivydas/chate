@@ -129,7 +129,7 @@ const roadmaps = ref([
             },
             {
                 title: "Galimybė įrašius @ skirti žinutę tam tikram vartotojui",
-                done: false,
+                done: true,
             },
             {
                 title: "Paveiksliukų/nuotraukų kėlimas",

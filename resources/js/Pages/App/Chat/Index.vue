@@ -1,15 +1,50 @@
 <template>
     <AppLayout>
-        <Breadcrumbs :show-app-item="true" current-page="Pokalbiai" />
-
+        <div
+            class="w-full text-sm mt-2 font-semibold text-gray-300 bg-gray-800 p-3"
+        >
+            Pokalbiuose: {{ online.length }}
+        </div>
         <ChatSection>
             <template #messages>
                 <!-- chat messages -->
-                <div class="min-h-[calc(100vh-150px)] bg-gray-800 p-4">
+                <div class="w-full flex justify-center">
+                    <InfiniteLoading
+                        v-if="showInfinityLoaderAfterOneSecond"
+                        @infinite="load"
+                        class="min-w-[30px] h-[30px]"
+                    />
+                </div>
+                <div class="min-h-[calc(100vh-10px)] bg-gray-800 p-4">
                     <div
-                        class="max-w-5xl mx-auto space-y-6 grid grid-cols-1 text-gray-500"
+                        class="relative max-w-5xl mx-auto space-y-2 grid grid-cols-1 text-gray-500 pb-2"
                     >
-                        <ChatMessage name="test" content="test" type="sender" />
+                        <template v-for="message in allMessages">
+                            <template v-if="user.name === message.user.name">
+                                <ChatMessage
+                                    :name="message.user.name"
+                                    :content="message.message"
+                                    type="receiver"
+                                />
+                            </template>
+                            <template v-else>
+                                <template v-if="isMessageToMe(message.message)">
+                                    <ChatMessage
+                                        :name="message.user.name"
+                                        :content="message.message"
+                                        type="mentioning"
+                                    />
+                                </template>
+                                <template v-else>
+                                    <ChatMessage
+                                        :name="message.user.name"
+                                        :content="message.message"
+                                        type="sender"
+                                    />
+                                </template>
+                            </template>
+                        </template>
+                        <!-- <ChatMessage name="test" content="test" type="sender" />
                         <ChatMessage
                             name="test"
                             content="test"
@@ -19,80 +54,13 @@
                             name="test"
                             content="heyy. Kaip sekasi?"
                             type="mentioning"
-                        />
+                        /> -->
                     </div>
                 </div>
             </template>
             <template #input>
                 <!-- chat input -->
-                <form class="absolute bottom-0 w-full">
-                    <label for="chat" class="sr-only">Your message</label>
-                    <div
-                        class="flex items-center px-3 py-2 bg-gray-50 dark:bg-gray-700"
-                    >
-                        <button
-                            type="button"
-                            class="inline-flex justify-center p-2 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
-                        >
-                            <svg
-                                aria-hidden="true"
-                                class="w-6 h-6"
-                                fill="currentColor"
-                                viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    fill-rule="evenodd"
-                                    d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"
-                                    clip-rule="evenodd"
-                                ></path>
-                            </svg>
-                            <span class="sr-only">Upload image</span>
-                        </button>
-                        <button
-                            type="button"
-                            class="p-2 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
-                        >
-                            <svg
-                                aria-hidden="true"
-                                class="w-6 h-6"
-                                fill="currentColor"
-                                viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    fill-rule="evenodd"
-                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zm-.464 5.535a1 1 0 10-1.415-1.414 3 3 0 01-4.242 0 1 1 0 00-1.415 1.414 5 5 0 007.072 0z"
-                                    clip-rule="evenodd"
-                                ></path>
-                            </svg>
-                            <span class="sr-only">Add emoji</span>
-                        </button>
-                        <textarea
-                            id="chat"
-                            rows="1"
-                            class="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Your message..."
-                        ></textarea>
-                        <button
-                            type="submit"
-                            class="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-600"
-                        >
-                            <svg
-                                aria-hidden="true"
-                                class="w-6 h-6 rotate-90"
-                                fill="currentColor"
-                                viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"
-                                ></path>
-                            </svg>
-                            <span class="sr-only">Send message</span>
-                        </button>
-                    </div>
-                </form>
+                <ChatInput />
             </template>
         </ChatSection>
     </AppLayout>
@@ -100,7 +68,82 @@
 
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
-import Breadcrumbs from "@/Components/Breadcrumbs.vue";
 import ChatSection from "@/Components/ChatSection.vue";
 import ChatMessage from "@/Components/Chat/Message.vue";
+import ChatInput from "@/Components/Chat/Input.vue";
+import useScroll from "@/Use/useScroll.js";
+import InfiniteLoading from "v3-infinite-loading";
+import "v3-infinite-loading/lib/style.css";
+import { computed, onMounted, onUnmounted, ref } from "vue";
+import { usePage } from "@inertiajs/inertia-vue3";
+import axios from "axios";
+
+const showInfinityLoaderAfterOneSecond = ref(false);
+const { scrollToBottom } = useScroll();
+const users = ref([]);
+const page = ref(1);
+const messages = ref([]);
+
+onMounted(() => {
+    axios.get("/app/chat?page=" + page.value).then((response) => {
+        messages.value.splice(0, 0, ...response.data.data);
+        page.value++;
+    });
+
+    scrollToBottom("chat-container");
+
+    setTimeout(() => {
+        showInfinityLoaderAfterOneSecond.value = true;
+    }, 1000);
+
+    window.Echo.join("chat")
+        .here((people) => {
+            users.value = people;
+        })
+        .joining((user) => {
+            users.value.push(user);
+        })
+        .leaving((user) => {
+            users.value = users.value.filter((u) => u.id !== user.id);
+        })
+        .listen("ChatMessageSent", (event) => {
+            messages.value.push(event);
+            scrollToBottom("chat-container");
+        });
+});
+
+onUnmounted(() => {
+    window.Echo.leave("chat");
+});
+
+const online = computed(() => users.value);
+const user = computed(() => usePage().props.value.auth.user);
+
+const load = async ($state) => {
+    if (page.value === null) {
+        $state.complete();
+        return;
+    }
+
+    axios.get("/app/chat?page=" + page.value).then((response) => {
+        if (response.data.links.next === null) {
+            page.value = null;
+        }
+
+        messages.value.splice(0, 0, ...response.data.data);
+        $state.loaded();
+    });
+
+    page.value++;
+};
+
+const allMessages = computed(() => {
+    return messages.value.sort((a, b) => {
+        return a.id - b.id;
+    });
+});
+
+const isMessageToMe = (message) => {
+    return message.includes("@" + user.value.name);
+};
 </script>

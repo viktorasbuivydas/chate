@@ -19,5 +19,10 @@ class UsersTableSeeder extends Seeder
         ]);
 
         $user->assignRole('super admin');
+
+        $user = \App\Models\User::factory()->create([
+            'name' => 'test',
+            'email' => 'test@gmail.com',
+        ]);
     }
 }

@@ -893,6 +893,11 @@
   "resolved" "https://registry.npmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz"
   "version" "1.0.2"
 
+"v3-infinite-loading@^1.2.2":
+  "integrity" "sha512-MWJc6yChnqeUasBFJ3Enu8IGPcQgRMSTrAEtT1MsHBEx+QjwvNTaY8o+8V9DgVt1MVhQSl3MC55hsaWLJmpRMw=="
+  "resolved" "https://registry.npmjs.org/v3-infinite-loading/-/v3-infinite-loading-1.2.2.tgz"
+  "version" "1.2.2"
+
 "vite-plugin-full-reload@^1.0.5":
   "integrity" "sha512-kVZFDFWr0DxiHn6MuDVTQf7gnWIdETGlZh0hvTiMXzRN80vgF4PKbONSq8U1d0WtHsKaFODTQgJeakLacoPZEQ=="
   "resolved" "https://registry.npmjs.org/vite-plugin-full-reload/-/vite-plugin-full-reload-1.0.5.tgz"

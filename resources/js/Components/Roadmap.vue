@@ -121,11 +121,7 @@ const roadmaps = ref([
         items: [
             {
                 title: "Žinučių siuntimas",
-                done: false,
-            },
-            {
-                title: "Žinučių koregavimas",
-                done: false,
+                done: true,
             },
             {
                 title: "Atsakymas į žinutę",

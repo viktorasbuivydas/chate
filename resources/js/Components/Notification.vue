@@ -3,7 +3,10 @@
         class="flex flex-col w-fit p-4 mt-6 rounded-lg bg-blue-50 dark:bg-blue-900"
     >
         <div class="flex items-center justify-center mb-3 relative">
-            <div class="absolute right-0 flex items-center justify-center">
+            <div
+                class="absolute right-0 flex items-center justify-center"
+                v-if="canClose"
+            >
                 <button class="flex hover:bg-blue-700 rounded-md p-1">
                     <Material icon="close" />
                 </button>
@@ -25,6 +28,12 @@
 <script setup>
 import Material from "@/Components/Material.vue";
 
+defineProps({
+    canClose: {
+        type: Boolean,
+        default: true,
+    },
+});
 // todo close this notification.
 // update user setting to do not display notification with specific id
 </script>

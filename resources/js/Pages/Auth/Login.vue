@@ -2,7 +2,7 @@
     <GuestLayout>
         <div>
             <AuthContainer>
-                <Notification class="mx-auto">
+                <Notification class="mx-auto" :canClose="false">
                     <template #headline> Pranešimas </template>
                     Sveiki atvykę į uždarą programuotojų, dizainerių platformą.
                     Norėdami gauti pakvietimą, susisiekite su vienu iš projekte

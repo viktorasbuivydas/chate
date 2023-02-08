@@ -14,7 +14,7 @@ class ChatController extends Controller
     public function index()
     {
         $messages = ChatMessage::with('user')
-            ->latest()
+            ->latest('id')
             ->paginate();
 
         if (request()->wantsJson()) {

@@ -5,20 +5,22 @@
         >
             Pokalbiuose: {{ online.length }}
         </div>
-        <ChatSection>
+        <ChatSection :messages-count="allMessages.length">
             <template #messages>
                 <!-- chat messages -->
-                <div class="w-full flex justify-center">
-                    <InfiniteLoading
-                        v-if="showInfinityLoaderAfterOneSecond"
-                        @infinite="load"
-                        class="min-w-[30px] h-[30px]"
-                    />
-                </div>
-                <div class="min-h-[calc(100vh-10px)] bg-gray-800 p-4">
+                <div
+                    class="min-h-[calc(100vh-10px)] bg-gray-800 p-4"
+                    :class="{
+                        'min-h-[calc(100vh-500px)]': allMessages.length < 10,
+                    }"
+                >
                     <div
                         class="relative max-w-5xl mx-auto space-y-2 grid grid-cols-1 text-gray-500 pb-2"
                     >
+                        <infinite-loading
+                            direction="top"
+                            @infinite="load"
+                        ></infinite-loading>
                         <template v-for="message in allMessages">
                             <template v-if="user.name === message.user.name">
                                 <ChatMessage
@@ -72,8 +74,7 @@ import ChatSection from "@/Components/ChatSection.vue";
 import ChatMessage from "@/Components/Chat/Message.vue";
 import ChatInput from "@/Components/Chat/Input.vue";
 import useScroll from "@/Use/useScroll.js";
-import InfiniteLoading from "v3-infinite-loading";
-import "v3-infinite-loading/lib/style.css";
+import InfiniteLoading from "vue-infinite-loading";
 import { computed, onMounted, onUnmounted, ref } from "vue";
 import { usePage } from "@inertiajs/inertia-vue3";
 import axios from "axios";
@@ -120,21 +121,17 @@ const online = computed(() => users.value);
 const user = computed(() => usePage().props.value.auth.user);
 
 const load = async ($state) => {
-    if (page.value === null) {
-        $state.complete();
-        return;
-    }
-
-    axios.get("/app/chat?page=" + page.value).then((response) => {
-        if (response.data.links.next === null) {
-            page.value = null;
-        }
-
-        messages.value.splice(0, 0, ...response.data.data);
-        $state.loaded();
-    });
-
-    page.value++;
+    setTimeout(() => {
+        axios.get("/app/chat?page=" + page.value).then((response) => {
+            if (response.data.data.length) {
+                page.value += 1;
+                messages.value.unshift(...response.data.data.reverse());
+                $state.loaded();
+            } else {
+                $state.complete();
+            }
+        });
+    }, 1000);
 };
 
 const allMessages = computed(() => {

@@ -1,12 +1,15 @@
 <template>
     <div>
         <ChatDropdown v-if="showMentionUsersList" @mention="handleMention" />
+        <div class="absolute bottom-20 left-10">
+            <EmojiPicker v-if="showEmojiList" @emoji_click="handleEmoji" />
+        </div>
         <form class="absolute bottom-0 w-full" @submit.prevent="submit">
             <label for="chat" class="sr-only">Your message</label>
             <div
                 class="flex items-center px-3 py-2 bg-gray-50 dark:bg-gray-700"
             >
-                <!-- <button
+                <button
                     type="button"
                     class="inline-flex justify-center p-2 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
                 >
@@ -24,9 +27,10 @@
                         ></path>
                     </svg>
                     <span class="sr-only">Upload image</span>
-                </button> -->
-                <!-- <button
+                </button>
+                <button
                     type="button"
+                    @click="showEmojiList = !showEmojiList"
                     class="hidden md:flex p-2 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
                 >
                     <svg
@@ -43,11 +47,12 @@
                         ></path>
                     </svg>
                     <span class="sr-only">Add emoji</span>
-                </button> -->
+                </button>
                 <input
                     v-model="form.message"
                     @input="handleInput"
                     id="chat"
+                    autocomplete="off"
                     class="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 focus:outline-none"
                     placeholder="Your message..."
                 />
@@ -102,6 +107,7 @@
 import { useForm } from "@inertiajs/inertia-vue3";
 import { ref } from "vue";
 import ChatDropdown from "@/Components/Chat/Dropdown.vue";
+import EmojiPicker from "@/Components/EmojiPicker.vue";
 
 const form = useForm({
     message: "",
@@ -109,6 +115,7 @@ const form = useForm({
 
 const loading = ref(false);
 const showMentionUsersList = ref(false);
+const showEmojiList = ref(false);
 
 const submit = () => {
     loading.value = true;
@@ -137,5 +144,9 @@ const handleInput = (e) => {
 const handleMention = (user) => {
     form.message = `@${user.name} `;
     showMentionUsersList.value = false;
+};
+
+const handleEmoji = (emoji) => {
+    form.message += emoji + " ";
 };
 </script>

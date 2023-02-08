@@ -20,19 +20,17 @@
             <div class="flex flex-col">
                 <ul class="flex flex-col space-y-2">
                     <SidebarItem
-                        icon="home"
-                        label="Pagrindinis"
+                        icon="arrow_back"
+                        label="Grįžti į svetainę"
                         :link="route('app.index')"
-                        active-start="app.index"
                     />
                     <SidebarItem
-                        icon="chat"
+                        icon="chat_bubble"
                         label="Pokalbiai"
-                        route="/app/chat"
-                        :link="route('app.chat.index')"
-                        active-start="app.chat."
-                        count="2"
+                        :link="route('app.admin.chat.index')"
+                        active-start="app.admin.chat."
                     />
+
                     <!-- <SidebarItem
                     icon="forum"
                     label="Forumas"
@@ -59,13 +57,12 @@
                     label="Profilis"
                     route="/app/profile"
                 />
+                <SidebarItem
+                    icon="admin_panel_settings"
+                    label="Valdymas"
+                    route="/app/cpanel"
+                />
                     -->
-                    <SidebarItem
-                        icon="admin_panel_settings"
-                        label="Valdymas"
-                        :link="route('app.admin.index')"
-                        route="/app/cpanel"
-                    />
                 </ul>
 
                 <Notification>

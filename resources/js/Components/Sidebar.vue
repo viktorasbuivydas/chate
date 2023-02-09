@@ -31,7 +31,6 @@
                         route="/app/chat"
                         :link="route('app.chat.index')"
                         active-start="app.chat."
-                        count="2"
                     />
                     <!-- <SidebarItem
                     icon="forum"

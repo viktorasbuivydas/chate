@@ -20,11 +20,12 @@ class CreateMessage
         $chatMessage = ChatMessage::create([
             'message' => $message,
             'user_id' => $userId,
+            'chat_id' => Arr::get($data, 'chat_id'),
         ]);
 
         $user = User::whereId($userId)->first();
 
-        broadcast(new ChatMessageSent($message, $user))->toOthers();
+        broadcast(new ChatMessageSent($message, $user, Arr::get($data, 'chat_id')))->toOthers();
 
         return $chatMessage;
     }

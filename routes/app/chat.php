@@ -9,6 +9,11 @@ Route::controller(ChatController::class)
     ->name('app.chat.')
     ->group(function () {
         Route::get('/', 'index')->name('index');
-        Route::post('/send-message', 'store')->name('store');
-        Route::get('/users', 'users')->name('users');
+        Route::name('messages.')
+            ->prefix('/{chat:uuid}')
+            ->group(function () {
+                Route::get('/', 'messages')->name('index');
+                Route::post('/send-message', 'store')->name('store');
+                Route::get('/users', 'users')->name('users');
+            });
     });

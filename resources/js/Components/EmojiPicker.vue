@@ -1,43 +1,10 @@
-<script>
-/**
- * Emoji Picker
- * Load emojis and  categories from the json file 'emojis-data.json'
- * Events:
- *  - 'emoji_click' event is fires when the user clicks on an emoji. The emoji is sent as event payload.
- * Props:
- * 	- 'show_arrow' boolean to show or not the arrow at the bottom of the picker. True by default.
- */
-
-import data from "@/Data/emoji.json";
-
-export default {
-    props: {
-        show_arrow: {
-            type: Boolean,
-            required: false,
-            default: true,
-        },
-    },
-    computed: {
-        categories() {
-            return Object.keys(data);
-        },
-
-        category_emojis: () => (category) => {
-            return Object.values(data[category]);
-        },
-    },
-    methods: {
-        handleEmojiClick(e, emoji) {
-            e.preventDefault();
-            this.$emit("emoji_click", emoji);
-        },
-    },
-};
-</script>
-
 <template>
     <div class="emoji_picker">
+        <div class="flex justify-end pr-4 pt-2">
+            <button @click="$emit('close')">
+                <Material icon="close" />
+            </button>
+        </div>
         <div class="picker_container">
             <div
                 class="category"
@@ -59,6 +26,48 @@ export default {
         <div class="bottom_arrow" v-if="show_arrow"></div>
     </div>
 </template>
+
+<script>
+/**
+ * Emoji Picker
+ * Load emojis and  categories from the json file 'emojis-data.json'
+ * Events:
+ *  - 'emoji_click' event is fires when the user clicks on an emoji. The emoji is sent as event payload.
+ * Props:
+ * 	- 'show_arrow' boolean to show or not the arrow at the bottom of the picker. True by default.
+ */
+
+import data from "@/Data/emoji.json";
+import Material from "@/Components/Material.vue";
+
+export default {
+    props: {
+        show_arrow: {
+            type: Boolean,
+            required: false,
+            default: true,
+        },
+    },
+    components: {
+        Material,
+    },
+    computed: {
+        categories() {
+            return Object.keys(data);
+        },
+
+        category_emojis: () => (category) => {
+            return Object.values(data[category]);
+        },
+    },
+    methods: {
+        handleEmojiClick(e, emoji) {
+            e.preventDefault();
+            this.$emit("emoji_click", emoji);
+        },
+    },
+};
+</script>
 
 <style scoped>
 .emoji_picker {

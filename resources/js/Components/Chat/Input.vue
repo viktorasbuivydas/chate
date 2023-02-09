@@ -2,7 +2,11 @@
     <div>
         <ChatDropdown v-if="showMentionUsersList" @mention="handleMention" />
         <div class="absolute bottom-20 left-10">
-            <EmojiPicker v-if="showEmojiList" @emoji_click="handleEmoji" />
+            <EmojiPicker
+                v-if="showEmojiList"
+                @emoji_click="handleEmoji"
+                @close="closeEmojiPicker"
+            />
         </div>
         <form class="absolute bottom-0 w-full" @submit.prevent="submit">
             <label for="chat" class="sr-only">Your message</label>
@@ -109,6 +113,13 @@ import { ref } from "vue";
 import ChatDropdown from "@/Components/Chat/Dropdown.vue";
 import EmojiPicker from "@/Components/EmojiPicker.vue";
 
+const props = defineProps({
+    chat: {
+        type: Object,
+        required: true,
+    },
+});
+
 const form = useForm({
     message: "",
 });
@@ -119,14 +130,20 @@ const showEmojiList = ref(false);
 
 const submit = () => {
     loading.value = true;
-    form.post(route("app.chat.store"), {
-        onSuccess: () => {
-            form.reset("message");
-        },
-        onFinish: () => {
-            loading.value = false;
-        },
-    });
+    closeEmojiPicker();
+    form.post(
+        route("app.chat.messages.store", {
+            chat: props.chat,
+        }),
+        {
+            onSuccess: () => {
+                form.reset("message");
+            },
+            onFinish: () => {
+                loading.value = false;
+            },
+        }
+    );
 };
 
 const handleInput = (e) => {
@@ -148,5 +165,9 @@ const handleMention = (user) => {
 
 const handleEmoji = (emoji) => {
     form.message += emoji + " ";
+};
+
+const closeEmojiPicker = () => {
+    showEmojiList.value = false;
 };
 </script>

@@ -7,14 +7,14 @@
                 label="Pokalbiai"
                 route="/app/chat"
             >
-                Globalūs nustatymai
+                Pokalbiai
             </BaseTabsItem>
             <BaseTabsItem
                 :disabled="disabledTab"
                 label="Pokalbiai"
                 route="/app/chat"
             >
-                Užtildyti vartotojai
+                Pokalbių kanalai
             </BaseTabsItem>
         </BaseTabs>
     </div>

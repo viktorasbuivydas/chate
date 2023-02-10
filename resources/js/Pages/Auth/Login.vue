@@ -31,7 +31,7 @@
                             :required="true"
                         >
                             <template #leading>
-                                <button
+                                <div
                                     @click="togglePassword"
                                     class="flex cursor-pointer"
                                     :class="{ 'opacity-25': form.processing }"
@@ -42,7 +42,7 @@
                                         icon="visibility"
                                     />
                                     <Material v-else icon="visibility_off" />
-                                </button>
+                                </div>
                             </template>
                         </BaseInput>
                         <InputError

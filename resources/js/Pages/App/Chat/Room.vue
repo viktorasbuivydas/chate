@@ -19,7 +19,7 @@
                     >
                         <infinite-loading
                             direction="top"
-                            @infinite="load"
+                            @infinite="loadData"
                         ></infinite-loading>
                         <template v-for="message in allMessages">
                             <template v-if="user.name === message.user.name">
@@ -121,7 +121,7 @@ onUnmounted(() => {
 const online = computed(() => users.value);
 const user = computed(() => usePage().props.value.auth.user);
 
-const load = async ($state) => {
+const loadData = async ($state) => {
     setTimeout(() => {
         axios
             .get("/app/chat/" + props.chatRoom.uuid + "?page=" + page.value)

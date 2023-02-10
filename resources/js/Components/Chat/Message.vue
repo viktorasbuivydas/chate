@@ -1,5 +1,6 @@
 <template>
-    <template v-if="type === 'sender'">
+    <ChatCard :type="type" :name="name" :content="content" />
+    <!-- <template v-if="type === 'sender'">
         <div class="place-self-start relative">
             {{ name }}
             <div class="flex items-center space-x-2">
@@ -52,7 +53,7 @@
                 </div>
             </div>
         </div>
-    </template>
+    </template> -->
 </template>
 
 <script setup>
@@ -61,6 +62,7 @@ import { ref, computed } from "vue";
 import More from "@/Components/Chat/More.vue";
 import { usePage } from "@inertiajs/inertia-vue3";
 import MentionUser from "@/Components/Chat/MentionUser.vue";
+import ChatCard from "@/Components/Chat/Card.vue";
 
 defineProps({
     content: {

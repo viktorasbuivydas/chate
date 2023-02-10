@@ -147,11 +147,7 @@ const submit = () => {
 };
 
 const handleInput = (e) => {
-    if (form.message.length > 1) {
-        return;
-    }
-
-    if (e.target.value.startsWith("@")) {
+    if (e.target.value.startsWith("@") && e.target.value.length > 1) {
         showMentionUsersList.value = true;
     } else {
         showMentionUsersList.value = false;

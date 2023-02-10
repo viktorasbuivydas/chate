@@ -8,9 +8,5 @@ return [
     [
         'name' => 'Programavimas',
         'is_private' => false,
-    ],
-    [
-        'name' => 'Valdžia',
-        'is_private' => true,
     ]
 ];

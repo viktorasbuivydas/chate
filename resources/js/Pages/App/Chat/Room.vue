@@ -1,17 +1,25 @@
 <template>
     <AppLayout>
-        <div
-            class="w-full text-sm mt-2 font-semibold text-gray-300 bg-gray-800 p-3"
-        >
-            Pokalbiuose: {{ online.length }}
+        <div class="w-full text-sm font-semibold text-gray-300 bg-gray-800 p-3">
+            <div
+                :href="route('app.chat.index')"
+                class="flex space-x-2 items-center justify-center text-base font-medium text-gray-500 rounded-lg bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
+            >
+                <div class="flex space-x-2">
+                    <div>Aktyvių -</div>
+                    <div class="font-bold">
+                        {{ online.length }}
+                    </div>
+                </div>
+            </div>
         </div>
-        <ChatSection :messages-count="allMessages.length">
+        <ChatSection :messages-count="messages.length">
             <template #messages>
                 <!-- chat messages -->
                 <div
                     class="min-h-[calc(100vh-10px)] bg-gray-800 p-4"
                     :class="{
-                        'min-h-[calc(100vh-500px)]': allMessages.length < 10,
+                        'min-h-[calc(100vh-500px)]': messages.length < 10,
                     }"
                 >
                     <div
@@ -21,7 +29,7 @@
                             direction="top"
                             @infinite="loadData"
                         ></infinite-loading>
-                        <template v-for="message in allMessages">
+                        <template v-for="message in messages">
                             <template v-if="user.name === message.user.name">
                                 <ChatMessage
                                     :name="message.user.name"
@@ -76,6 +84,7 @@ import ChatInput from "@/Components/Chat/Input.vue";
 import useScroll from "@/Use/useScroll.js";
 import InfiniteLoading from "vue-infinite-loading";
 import { computed, onMounted, onUnmounted, ref } from "vue";
+import Link from "@/Components/Base/Link.vue";
 import { usePage } from "@inertiajs/inertia-vue3";
 import axios from "axios";
 
@@ -136,12 +145,6 @@ const loadData = async ($state) => {
             });
     }, 1000);
 };
-
-const allMessages = computed(() => {
-    return messages.value.sort((a, b) => {
-        return a.id - b.id;
-    });
-});
 
 const isMessageToMe = (message) => {
     return message.includes("@" + user.value.name);

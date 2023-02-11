@@ -9,6 +9,7 @@ use App\Actions\Chat\CreateMessage;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Http\Resources\ChatMessageResource;
+use App\Http\Requests\CreateChatMessageRequest;
 
 class ChatController extends Controller
 {
@@ -36,14 +37,12 @@ class ChatController extends Controller
         ]);
     }
 
-    public function store(Chat $chat)
+    public function store(CreateChatMessageRequest $request, Chat $chat)
     {
-        $data = request()->validate([
-            'message' => 'required',
+        app(CreateMessage::class)->handle([
+            'message' => $request->input('message'),
+            'chat_id' => $chat->id,
         ]);
-
-        $data['chat_id'] = $chat->id;
-        app(CreateMessage::class)->handle($data);
 
         return redirect()->back();
     }

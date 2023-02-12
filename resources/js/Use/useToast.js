@@ -1,28 +1,29 @@
 import { getCurrentInstance } from "vue";
 
 export default function useToast() {
-    const toast = () => {
-        return getCurrentInstance().appContext.app.$toast;
+    const getToastInstance = (instance) => {
+        return instance.appContext.app.$toast;
     };
 
-    const pushToast = (message) => {
-        toast().show(message);
+    const pushToast = (message, instance) => {
+        console.log(instance);
+        instance.show(message);
     };
 
-    const pushSuccessToast = (message) => {
-        toast().success(message);
+    const pushSuccessToast = (message, instance) => {
+        instance.success(message);
     };
 
-    const pushErrorToast = (message) => {
-        toast().error(message);
+    const pushErrorToast = (message, instance) => {
+        instance.error(message);
     };
 
-    const pushWarningToast = (message) => {
-        toast().warning(message);
+    const pushWarningToast = (message, instance) => {
+        instance.warning(message);
     };
 
-    const pushInfoToast = (message) => {
-        toast().info(message);
+    const pushInfoToast = (message, instance) => {
+        instance.info(message);
     };
 
     const closeAllToasts = () => {
@@ -30,7 +31,7 @@ export default function useToast() {
     };
 
     return {
-        toast,
+        getToastInstance,
         pushToast,
         pushSuccessToast,
         pushErrorToast,

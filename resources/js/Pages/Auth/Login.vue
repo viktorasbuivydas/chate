@@ -73,14 +73,13 @@ import BaseButton from "@/Components/Base/Button.vue";
 import Material from "@/Components/Material.vue";
 import InputError from "@/Components/InputError.vue";
 import Notification from "@/Components/Notification.vue";
-import { ref, computed } from "vue";
-
-defineProps({
-    canResetPassword: Boolean,
-    status: String,
-});
+import { ref, computed, getCurrentInstance } from "vue";
+import useToast from "@/Use/useToast.js";
 
 const showPassword = ref(false);
+
+const { getToastInstance, pushSuccessToast, pushErrorToast } = useToast();
+const instance = getToastInstance(getCurrentInstance());
 
 const form = useForm({
     email: "",
@@ -94,6 +93,8 @@ const submit = () => {
         remember: form.remember ? "on" : "",
     })).post(route("login"), {
         onFinish: () => form.reset("password"),
+        onSuccess: () => pushSuccessToast("Sėkmingai prisijungta", instance),
+        onError: () => pushErrorToast("Klaida! nepavyko prisijungti", instance),
     });
 };
 

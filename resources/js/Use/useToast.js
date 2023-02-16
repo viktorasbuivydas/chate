@@ -1,5 +1,3 @@
-import { getCurrentInstance } from "vue";
-
 export default function useToast() {
     const getToastInstance = (instance) => {
         return instance.appContext.app.$toast;

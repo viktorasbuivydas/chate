@@ -1,20 +1,19 @@
 <template>
-    <div class="border-b border-gray-200 dark:border-gray-700">
+    <div>
         <BaseTabs>
             <BaseTabsItem
                 :active-tab="true"
                 :disabled="disabledTab"
-                label="Pokalbiai"
-                route="/app/chat"
-            >
-                Pokalbiai
-            </BaseTabsItem>
-            <BaseTabsItem
-                :disabled="disabledTab"
-                label="Pokalbiai"
-                route="/app/chat"
+                icon="chat_bubble"
             >
                 Pokalbių kanalai
+            </BaseTabsItem>
+            <BaseTabsItem
+                :active-tab="false"
+                :disabled="disabledTab"
+                icon="chat"
+            >
+                Pokalbiai
             </BaseTabsItem>
         </BaseTabs>
     </div>

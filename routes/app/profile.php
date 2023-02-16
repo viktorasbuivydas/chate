@@ -9,7 +9,9 @@ Route::controller(ProfileController::class)
     ->middleware(['auth:sanctum'])
     ->name('app.profile.')
     ->group(function () {
-        Route::get('/', [ProfileController::class, 'index'])->name('index');
+        Route::get('/', 'index')->name('index');
+        Route::get('/password', 'password')->name('password');
+        Route::get('/sessions', 'sessions')->name('sessions');
     });
 
 Route::put('/user/profile-information', [ProfileInformationController::class, 'update'])

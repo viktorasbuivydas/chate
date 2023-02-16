@@ -4,11 +4,13 @@ namespace Tests\Feature\Auth;
 
 use Tests\TestCase;
 use App\Models\User;
+use Tests\Support\Traits\UserTrait;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class PasswordConfirmationTest extends TestCase
 {
     use RefreshDatabase;
+    use UserTrait;
 
     public function test_confirm_password_screen_can_be_rendered(): void
     {

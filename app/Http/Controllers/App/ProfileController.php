@@ -12,9 +12,7 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        return inertia('App/Profile', [
-            'sessions' => $this->sessions(request())->all()
-        ]);
+        return inertia('App/Profile/Index');
     }
 
     public function sessions(Request $request)
@@ -23,7 +21,7 @@ class ProfileController extends Controller
             return collect();
         }
 
-        return collect(
+        $sessions = collect(
             DB::connection(config('session.connection'))->table(config('session.table', 'sessions'))
                 ->where('user_id', $request->user()->getAuthIdentifier())
                 ->orderBy('last_activity', 'desc')
@@ -42,6 +40,15 @@ class ProfileController extends Controller
                 'last_active' => Carbon::createFromTimestamp($session->last_activity)->diffForHumans(),
             ];
         });
+
+        return inertia('App/Profile/Sessions', [
+            'sessions' => $sessions,
+        ]);
+    }
+
+    public function password()
+    {
+        return inertia('App/Profile/Password');
     }
 
     protected function createAgent($session)

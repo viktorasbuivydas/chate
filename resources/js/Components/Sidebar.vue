@@ -31,7 +31,6 @@
                         route="/app/chat"
                         :link="route('app.chat.index')"
                         active-start="app.chat."
-                        count="2"
                     />
                     <!-- <SidebarItem
                     icon="forum"
@@ -59,22 +58,14 @@
                     label="Profilis"
                     route="/app/profile"
                 />
-                <SidebarItem
-                    icon="settings"
-                    label="Nustatymai"
-                    route="/app/settings"
-                />
-                <SidebarItem
-                    icon="admin_panel_settings"
-                    label="Valdymas"
-                    route="/app/cpanel"
-                />
-                <SidebarItem
-                    icon="toggle_on"
-                    label="Prisijungę"
-                    route="/app/online"
-                    count="5"
-                /> -->
+                    -->
+                    <SidebarItem
+                        v-if="canUserSeeAdminContent(roles)"
+                        icon="admin_panel_settings"
+                        label="Valdymas"
+                        :link="route('app.admin.index')"
+                        route="/app/cpanel"
+                    />
                 </ul>
 
                 <Notification>
@@ -98,8 +89,17 @@
 import SidebarItem from "@/Components/Sidebar/Item.vue";
 import Notification from "@/Components/Notification.vue";
 import { Link } from "@inertiajs/inertia-vue3";
+import { usePage } from "@inertiajs/inertia-vue3";
+import { computed } from "vue";
+import useRole from "@/Use/useRole.js";
 
 const logout = () => {
     Inertia.post(route("logout"));
 };
+
+const { canUserSeeAdminContent } = useRole();
+
+const roles = computed(() => {
+    return usePage().props.value.roles;
+});
 </script>

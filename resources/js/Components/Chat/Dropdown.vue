@@ -2,7 +2,7 @@
     <div
         class="absolute bottom-[50px] text-white w-full overflow-auto h-[150px]"
         :class="{
-            'bottom-0 h-auto': users.length < 5,
+            'bottom-12 h-auto': users.length < 5,
         }"
     >
         <form>

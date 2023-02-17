@@ -32,4 +32,5 @@ window.Echo = new Echo({
     forceTLS: false,
     disableStats: true,
     scheme: import.meta.env.VITE_PUSHER_SCHEME,
+    enabledTransports: ["ws"],
 });

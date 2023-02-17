@@ -28,8 +28,7 @@
 <script setup>
 import BaseTabs from "@/Components/Base/Tabs.vue";
 import BaseTabsItem from "@/Components/Base/Tabs/Item.vue";
+import useTab from "@/Use/useTab.js";
 
-const isActive = (tab) => {
-    return tab === route().current();
-};
+const { isActive } = useTab();
 </script>

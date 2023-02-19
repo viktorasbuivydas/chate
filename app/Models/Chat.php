@@ -19,6 +19,10 @@ class Chat extends Model
         'password'
     ];
 
+    protected $casts = [
+        'is_private' => 'boolean',
+    ];
+
     public function messages()
     {
         return $this->belongsToMany(ChatMessage::class);

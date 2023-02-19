@@ -3,6 +3,7 @@
         <BaseTabs>
             <BaseTabsItem
                 :active-tab="isActive('app.admin.chat.index')"
+                :link="route('app.admin.chat.index')"
                 :disabled="disabledTab"
                 icon="chat"
             >
@@ -10,6 +11,7 @@
             </BaseTabsItem>
             <BaseTabsItem
                 :active-tab="isActive('app.admin.chat.rooms')"
+                :link="route('app.admin.chat.rooms')"
                 :disabled="disabledTab"
                 icon="chat_bubble"
             >

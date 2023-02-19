@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\App\Admin;
 
+use App\Models\Chat;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ChatResource;
 
 class ChatController extends Controller
 {
@@ -10,6 +12,16 @@ class ChatController extends Controller
     {
         return inertia('App/Admin/Chat/Index');
     }
+
+    public function rooms()
+    {
+        $rooms = ChatResource::collection(Chat::all());
+
+        return inertia('App/Admin/Chat/Rooms', [
+            'rooms' => $rooms,
+        ]);
+    }
+
     public function clearChat()
     {
         return inertia('App/Chat/Index');

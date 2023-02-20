@@ -10,4 +10,5 @@ Route::controller(ChatController::class)
     ->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/rooms', 'rooms')->name('rooms');
+        Route::get('/{room}', 'room')->name('room.edit');
     });

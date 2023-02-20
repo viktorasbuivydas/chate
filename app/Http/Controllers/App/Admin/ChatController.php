@@ -22,6 +22,13 @@ class ChatController extends Controller
         ]);
     }
 
+    public function room(Chat $room)
+    {
+        return inertia('App/Admin/Chat/Room', [
+            'room' => $room,
+        ]);
+    }
+
     public function clearChat()
     {
         return inertia('App/Chat/Index');

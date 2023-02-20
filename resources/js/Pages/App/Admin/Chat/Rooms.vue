@@ -8,25 +8,12 @@
                     <AdminChatTabs />
                 </div>
                 <div class="mt-4 w-full">
-                    <BaseTable :header="header" :body="rooms.data">
-                        <template #actions>
-                            <div class="flex space-x-2 items-center">
-                                <button
-                                    class="text-green-500 hover:text-green-200"
-                                >
-                                    <Material icon="visibility" />
-                                </button>
-                                <button
-                                    class="text-blue-500 hover:text-blue-200"
-                                >
-                                    <Material icon="edit" />
-                                </button>
-                                <button class="text-red-500 hover:text-red-200">
-                                    <Material icon="delete" />
-                                </button>
-                            </div>
-                        </template>
-                    </BaseTable>
+                    <BaseTable
+                        :header="header"
+                        :body="rooms.data"
+                        :editAction="true"
+                        editRoute="app.admin.chat.room.edit"
+                    />
                 </div>
             </div>
         </div>
@@ -40,6 +27,7 @@ import AdminChatTabs from "@/Components/Admin/Chat/Tabs/Index.vue";
 import BaseTable from "@/Components/Base/Table.vue";
 import { ref } from "vue";
 import Material from "@/Components/Material.vue";
+import { Link } from "@inertiajs/inertia-vue3";
 
 const props = defineProps({
     rooms: {

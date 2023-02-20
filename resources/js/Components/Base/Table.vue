@@ -10,7 +10,11 @@
                     <th scope="col" class="px-6 py-3" v-for="item in header">
                         {{ item }}
                     </th>
-                    <th scope="col" class="px-6 py-3" v-if="slots.actions">
+                    <th
+                        scope="col"
+                        class="px-6 py-3"
+                        v-if="slots.actions || editAction || deleteAction"
+                    >
                         <span class="sr-only">Veiksmai</span>
                     </th>
                 </tr>
@@ -44,9 +48,25 @@
                     </th>
                     <td
                         class="flex px-6 py-4 text-right justify-end"
-                        v-if="slots.actions"
+                        v-if="slots.actions || editAction || deleteAction"
                     >
                         <slot name="actions" />
+
+                        <div class="flex space-x-2 items-center">
+                            <Link
+                                v-if="editAction"
+                                :href="route(editRoute, row)"
+                                class="text-blue-500 hover:text-blue-200"
+                            >
+                                <Material icon="edit" />
+                            </Link>
+                            <button
+                                v-if="deleteAction"
+                                class="text-red-500 hover:text-red-200"
+                            >
+                                <Material icon="delete" />
+                            </button>
+                        </div>
                     </td>
                 </tr>
             </tbody>
@@ -57,6 +77,8 @@
 <script setup>
 import { useSlots } from "vue";
 import Material from "@/Components/Material.vue";
+import { Link } from "@inertiajs/inertia-vue3";
+
 defineProps({
     header: {
         type: Array,
@@ -70,6 +92,21 @@ defineProps({
         type: Boolean,
         required: false,
         default: false,
+    },
+    editAction: {
+        type: Boolean,
+        required: false,
+        default: false,
+    },
+    deleteAction: {
+        type: Boolean,
+        required: false,
+        default: false,
+    },
+    editRoute: {
+        type: String,
+        required: false,
+        default: "",
     },
 });
 const slots = useSlots();

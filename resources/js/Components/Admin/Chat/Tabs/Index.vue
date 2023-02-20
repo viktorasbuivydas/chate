@@ -10,7 +10,10 @@
                 Pokalbiai
             </BaseTabsItem>
             <BaseTabsItem
-                :active-tab="isActive('app.admin.chat.rooms')"
+                :active-tab="
+                    isActive('app.admin.chat.rooms') ||
+                    isActive('app.admin.chat.room.edit')
+                "
                 :link="route('app.admin.chat.rooms')"
                 :disabled="disabledTab"
                 icon="chat_bubble"

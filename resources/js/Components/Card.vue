@@ -1,6 +1,9 @@
 <template>
     <div
-        class="p-5 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700"
+        class="bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700"
+        :class="{
+            'border-0': variant === 'borderless',
+        }"
     >
         <div
             class="font-normal text-gray-700 dark:text-gray-400 flex flex-col space-y-2"
@@ -12,3 +15,11 @@
         </div>
     </div>
 </template>
+<script setup>
+defineProps({
+    variant: {
+        type: String,
+        default: "primary",
+    },
+});
+</script>

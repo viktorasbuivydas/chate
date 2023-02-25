@@ -3,7 +3,7 @@
         <div class="flex flex-col space-y-2">
             <Link
                 v-for="room in chatRooms"
-                class="p-5"
+                class="py-5"
                 :href="route('app.chat.messages.index', room.uuid)"
             >
                 <template #leading>

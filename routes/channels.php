@@ -20,3 +20,7 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
 Broadcast::channel('chat.{roomId}', function ($user, $roomId) {
     return ['id' => $user->id, 'chat' => $roomId];
 });
+
+Broadcast::channel('online', function ($user) {
+    return ['id' => $user->id];
+});

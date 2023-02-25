@@ -35,5 +35,5 @@ const props = defineProps({
         required: true,
     },
 });
-const header = ref(["ID", "pavadinimas", "prisijungę", "privatus"]);
+const header = ref(["id", "name", "online", "private", "active"]);
 </script>

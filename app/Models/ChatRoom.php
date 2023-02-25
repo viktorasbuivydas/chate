@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\MediaLibrary\MediaCollections\Models\Concerns\HasUuid;
 
-class Chat extends Model
+class ChatRoom extends Model
 {
     use HasFactory;
     use HasUuid;
@@ -15,12 +15,16 @@ class Chat extends Model
         'name',
         'uuid',
         'online',
-        'is_private',
-        'password'
+        'private',
+        'active',
+        'password',
+        'parameters'
     ];
 
     protected $casts = [
-        'is_private' => 'boolean',
+        'private' => 'boolean',
+        'active' => 'boolean',
+        'parameters' => 'array'
     ];
 
     public function messages()

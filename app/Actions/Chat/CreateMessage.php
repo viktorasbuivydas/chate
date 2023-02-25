@@ -13,11 +13,11 @@ class CreateMessage
     {
         $userId = Arr::get($data, 'user_id', auth()->id());
         $message = Arr::get($data, 'message');
-        $chatId = Arr::get($data, 'chat_id');
+        $chatId = Arr::get($data, 'chat_room_id');
         $chatMessage = ChatMessage::create([
             'message' => $message,
             'user_id' => $userId,
-            'chat_id' => $chatId,
+            'chat_room_id' => $chatId,
         ]);
 
         $user = User::whereId($userId)->first();

@@ -25,7 +25,7 @@
                     class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
                 >
                     <th
-                        v-for="(item, index) in Object.values(row)"
+                        v-for="(item, index) in row"
                         scope="row"
                         class="px-6 py-4 font-medium whitespace-nowrap"
                         :class="{ 'text-white': index === 0 }"
@@ -43,7 +43,7 @@
                             />
                         </template>
                         <template v-else>
-                            {{ item }}
+                            {{ row[index] }}
                         </template>
                     </th>
                     <td

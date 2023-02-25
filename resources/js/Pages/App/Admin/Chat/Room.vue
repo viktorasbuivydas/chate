@@ -1,7 +1,7 @@
 <template>
     <AdminLayout>
         <Breadcrumbs />
-        <div class="grid grid-cols-1 gap-5 mt-10 w-full">
+        <div class="grid grid-cols-2 gap-5 mt-10 w-full">
             <div>
                 <div class="font-bold text-xl">Pokalbių valdymas</div>
                 <div class="mt-2">
@@ -28,14 +28,27 @@
                         </div>
                         <div>
                             <BaseCheckbox
-                                id="is_private"
-                                v-model="form.is_private"
+                                id="private"
+                                v-model="form.private"
                                 class="mt-1"
                             >
-                                Privatus pokalbis
+                                Privatus kambarys
                             </BaseCheckbox>
                             <InputError
-                                :message="form.errors.is_private"
+                                :message="form.errors.private"
+                                class="mt-2"
+                            />
+                        </div>
+                        <div>
+                            <BaseCheckbox
+                                id="private"
+                                v-model="form.active"
+                                class="mt-1"
+                            >
+                                Aktyvus kambarys
+                            </BaseCheckbox>
+                            <InputError
+                                :message="form.errors.private"
                                 class="mt-2"
                             />
                         </div>
@@ -54,6 +67,12 @@
                             />
                         </div>
                         <div class="flex justify-end mt-4">
+                            <BaseLink
+                                variant="secondary"
+                                :href="route('app.admin.chat.rooms')"
+                            >
+                                Atšaukti
+                            </BaseLink>
                             <BaseButton type="submit" class="ml-3">
                                 Išsaugoti
                             </BaseButton>
@@ -74,6 +93,7 @@ import BaseInput from "@/Components/Base/Input.vue";
 import InputError from "@/Components/InputError.vue";
 import BaseCheckbox from "@/Components/Base/Checkbox.vue";
 import BaseButton from "@/Components/Base/Button.vue";
+import BaseLink from "@/Components/Base/Link.vue";
 import { useForm } from "@inertiajs/inertia-vue3";
 
 const props = defineProps({
@@ -85,7 +105,8 @@ const props = defineProps({
 
 const form = useForm({
     name: props.room.name,
-    is_private: props.room.is_private,
+    private: props.room.private,
+    active: props.room.active,
 });
 
 const submit = () => {

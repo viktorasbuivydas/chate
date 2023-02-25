@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\App;
 
-use App\Models\Chat;
 use App\Models\User;
+use App\Models\ChatRoom;
 use App\Models\ChatMessage;
 use App\Actions\Chat\CreateMessage;
 use App\Http\Controllers\Controller;
@@ -15,19 +15,19 @@ class ChatController extends Controller
 {
     public function index()
     {
-        $chatRooms = Chat::all();
+        $chatRooms = ChatRoom::all();
 
         return inertia('App/Chat/Index', [
             'chatRooms' => $chatRooms,
         ]);
     }
 
-    public function messages(Chat $chat)
+    public function messages(ChatRoom $chat)
     {
         if (request()->wantsJson()) {
             $messages = ChatMessage::with('user')
                 ->latest('id')
-                ->where('chat_id', $chat->id)
+                ->where('chat_room_id', $chat->id)
                 ->paginate();
             return ChatMessageResource::collection($messages);
         }
@@ -37,11 +37,11 @@ class ChatController extends Controller
         ]);
     }
 
-    public function store(CreateChatMessageRequest $request, Chat $chat)
+    public function store(CreateChatMessageRequest $request, ChatRoom $chat)
     {
         app(CreateMessage::class)->handle([
             'message' => $request->input('message'),
-            'chat_id' => $chat->id,
+            'chat_room_id' => $chat->id,
         ]);
 
         return redirect()->back();

@@ -12,7 +12,8 @@
             <BaseTabsItem
                 :active-tab="
                     isActive('app.admin.chat.rooms') ||
-                    isActive('app.admin.chat.room.edit')
+                    isActive('app.admin.chat.room.edit') ||
+                    isActive('app.admin.chat.room.create')
                 "
                 :link="route('app.admin.chat.rooms')"
                 :disabled="disabledTab"

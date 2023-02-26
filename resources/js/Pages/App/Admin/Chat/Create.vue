@@ -101,23 +101,16 @@ import { getCurrentInstance } from "vue";
 const { getToastInstance, pushSuccessToast } = useToast();
 const instance = getToastInstance(getCurrentInstance());
 
-const props = defineProps({
-    room: {
-        type: Object,
-        required: true,
-    },
-});
-
 const form = useForm({
-    name: props.room.name,
-    private: props.room.private,
-    active: props.room.active,
+    name: "",
+    private: false,
+    active: true,
 });
 
 const submit = () => {
-    form.patch(route("app.admin.chat.room.update", props.room.id), {
+    form.post(route("app.admin.chat.room.store"), {
         onSuccess: () => {
-            pushSuccessToast("Pokalbis sėkmingai atnaujintas", instance);
+            pushSuccessToast("Pokalbis sėkmingai sukurtas", instance);
         },
     });
 };

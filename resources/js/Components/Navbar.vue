@@ -48,6 +48,11 @@ import NavbarDropdownMessages from "@/Components/Navbar/Dropdown/Messages.vue";
 import NavbarDropdownNotifications from "@/Components/Navbar/Dropdown/Notifications.vue";
 import NavbarDropdownUser from "@/Components/Navbar/Dropdown/User.vue";
 import { usePage } from "@inertiajs/inertia-vue3";
+import useToast from "@/Use/useToast.js";
+import { onMounted, getCurrentInstance } from "vue";
+
+const { getToastInstance, pushErrorToast } = useToast();
+const instance = getToastInstance(getCurrentInstance());
 
 const toggled = ref(false);
 const toggledNotifications = ref(false);
@@ -66,4 +71,11 @@ const toggleMessages = () => {
 };
 
 const user = computed(() => usePage().props.value.user);
+const error = computed(() => usePage().props.value.flash.error);
+
+onMounted(() => {
+    if (error.value) {
+        pushErrorToast(error.value, instance);
+    }
+});
 </script>

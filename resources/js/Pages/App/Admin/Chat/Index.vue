@@ -1,7 +1,7 @@
 <template>
     <AdminLayout>
         <Breadcrumbs />
-        <div class="grid grid-cols-2 gap-5 mt-10 w-full">
+        <div class="flex gap-5 mt-10 w-full">
             <div>
                 <div class="font-bold text-xl">Pokalbių valdymas</div>
                 <div class="mt-2">

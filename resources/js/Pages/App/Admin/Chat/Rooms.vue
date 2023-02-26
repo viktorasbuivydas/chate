@@ -1,11 +1,22 @@
 <template>
     <AdminLayout>
         <Breadcrumbs />
-        <div class="grid grid-cols-1 gap-5 mt-10 w-full">
+        <div class="mt-10 w-full">
             <div>
                 <div class="font-bold text-xl">Pokalbių valdymas</div>
-                <div class="mt-2">
+                <div class="mt-2 flex justify-between items-center">
                     <AdminChatTabs />
+                    <div>
+                        <BaseLink
+                            variant="primary"
+                            :href="route('app.admin.chat.room.create')"
+                        >
+                            <template #leading>
+                                <Material icon="add" class="mr-2" />
+                            </template>
+                            Kurti</BaseLink
+                        >
+                    </div>
                 </div>
                 <div class="mt-4 w-full">
                     <BaseTable
@@ -13,6 +24,8 @@
                         :body="rooms.data"
                         :editAction="true"
                         editRoute="app.admin.chat.room.edit"
+                        deleteRoute="app.admin.chat.room.delete"
+                        :deleteAction="true"
                     />
                 </div>
             </div>
@@ -25,9 +38,9 @@ import AdminLayout from "@/Layouts/AdminLayout.vue";
 import Breadcrumbs from "@/Components/Breadcrumbs.vue";
 import AdminChatTabs from "@/Components/Admin/Chat/Tabs/Index.vue";
 import BaseTable from "@/Components/Base/Table.vue";
-import { ref } from "vue";
+import BaseLink from "@/Components/Base/Link.vue";
 import Material from "@/Components/Material.vue";
-import { Link } from "@inertiajs/inertia-vue3";
+import { ref } from "vue";
 
 const props = defineProps({
     rooms: {
@@ -35,5 +48,22 @@ const props = defineProps({
         required: true,
     },
 });
-const header = ref(["id", "name", "online", "private", "active"]);
+const header = ref([
+    {
+        name: "ID",
+        key: "id",
+    },
+    {
+        name: "Pavadinimas",
+        key: "name",
+    },
+    {
+        name: "Aktyvus",
+        key: "active",
+    },
+    {
+        name: "Privatus",
+        key: "private",
+    },
+]);
 </script>

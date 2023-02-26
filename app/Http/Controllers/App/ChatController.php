@@ -10,12 +10,15 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Http\Resources\ChatMessageResource;
 use App\Http\Requests\CreateChatMessageRequest;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class ChatController extends Controller
 {
+    use AuthorizesRequests;
+
     public function index()
     {
-        $chatRooms = ChatRoom::all();
+        $chatRooms = ChatRoom::active()->get();
 
         return inertia('App/Chat/Index', [
             'chatRooms' => $chatRooms,

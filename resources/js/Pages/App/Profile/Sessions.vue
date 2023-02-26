@@ -125,7 +125,7 @@
 
                     <template #footer>
                         <BaseButton variant="secondary" @click="closeModal">
-                            Atšaukti
+                            Uždaryti
                         </BaseButton>
 
                         <BaseButton

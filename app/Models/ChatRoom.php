@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\MediaLibrary\MediaCollections\Models\Concerns\HasUuid;
 
@@ -27,8 +28,18 @@ class ChatRoom extends Model
         'parameters' => 'array'
     ];
 
-    public function messages()
+    public function messages(): HasMany
     {
-        return $this->belongsToMany(ChatMessage::class);
+        return $this->hasMany(ChatMessage::class);
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('active', true);
+    }
+
+    public function scopePrivate($query)
+    {
+        return $query->where('private', true);
     }
 }

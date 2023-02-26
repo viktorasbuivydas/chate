@@ -1,19 +1,26 @@
 <template>
     <AppLayout>
         <div class="flex flex-col space-y-2">
-            <Link
-                v-for="room in chatRooms"
-                class="py-5"
-                :href="route('app.chat.messages.index', room.uuid)"
-            >
-                <template #leading>
-                    <Material icon="chat" />
-                </template>
-                <template #trailing>
-                    <Material icon="arrow_forward" />
-                </template>
-                {{ room.name }}
-            </Link>
+            <template v-if="chatRooms.length > 0">
+                <Link
+                    v-for="room in chatRooms"
+                    class="py-5"
+                    :href="route('app.chat.messages.index', room.uuid)"
+                >
+                    <template #leading>
+                        <Material icon="chat" />
+                    </template>
+                    <template #trailing>
+                        <Material icon="arrow_forward" />
+                    </template>
+                    {{ room.name }}
+                </Link>
+            </template>
+            <template v-else>
+                <BaseError icon="chat">
+                    Nepavyko rasti pokalbių kanalų
+                </BaseError>
+            </template>
         </div>
     </AppLayout>
 </template>
@@ -22,6 +29,7 @@
 import AppLayout from "@/Layouts/AppLayout.vue";
 import Material from "@/Components/Material.vue";
 import Link from "@/Components/Base/Link.vue";
+import BaseError from "@/Components/Base/Error.vue";
 
 defineProps({
     chatRooms: {

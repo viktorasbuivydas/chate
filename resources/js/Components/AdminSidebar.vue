@@ -30,6 +30,12 @@
                         :link="route('app.admin.chat.index')"
                         active-start="app.admin.chat."
                     />
+                    <SidebarItem
+                        icon="topic"
+                        label="Topic"
+                        :link="route('app.admin.chat.index')"
+                        active-start="app.admin.chat."
+                    />
 
                     <!-- <SidebarItem
                     icon="forum"

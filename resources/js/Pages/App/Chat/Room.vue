@@ -119,6 +119,9 @@ onMounted(() => {
         .listen("ChatMessageSent", (event) => {
             messages.value.push(event);
             scrollToBottom("chat-container");
+        })
+        .listen("ClearChat", (event) => {
+            messages.value = [];
         });
 });
 

@@ -1,7 +1,7 @@
 <template>
     <AdminLayout>
         <Breadcrumbs />
-        <div class="mt-10 w-full">
+        <div class="flex flex-col space-y-4 mt-10 w-full">
             <div>
                 <div class="font-bold text-xl">Pokalbių valdymas</div>
                 <div class="mt-2">
@@ -80,6 +80,14 @@
                     </form>
                 </div>
             </div>
+            <div>
+                <BaseButton variant="danger" @click="clearChat">
+                    <template #leading>
+                        <Material icon="delete" />
+                    </template>
+                    <div>Ištrinti visas žinutes</div>
+                </BaseButton>
+            </div>
         </div>
     </AdminLayout>
 </template>
@@ -95,6 +103,7 @@ import BaseCheckbox from "@/Components/Base/Checkbox.vue";
 import BaseButton from "@/Components/Base/Button.vue";
 import BaseLink from "@/Components/Base/Link.vue";
 import { useForm } from "@inertiajs/inertia-vue3";
+import Material from "@/Components/Material.vue";
 import useToast from "@/Use/useToast.js";
 import { getCurrentInstance } from "vue";
 
@@ -118,6 +127,14 @@ const submit = () => {
     form.patch(route("app.admin.chat.room.update", props.room.id), {
         onSuccess: () => {
             pushSuccessToast("Pokalbis sėkmingai atnaujintas", instance);
+        },
+    });
+};
+
+const clearChat = () => {
+    form.delete(route("app.admin.chat.room.clear", props.room.id), {
+        onSuccess: () => {
+            pushSuccessToast("Pokalbių kambarys sėkmingai išvalytas", instance);
         },
     });
 };

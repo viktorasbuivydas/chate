@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\App\Admin;
 
 use App\Models\ChatRoom;
+use App\Events\ClearChat;
+use App\Events\MessageSent;
+use App\Events\ChatMessageSent;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ChatRoomResource;
 use App\Http\Requests\CreateChatRoomRequest;
@@ -46,9 +49,15 @@ class ChatController extends Controller
         ]);
     }
 
-    public function clearChat()
+    public function clearChat(ChatRoom $room)
     {
-        return inertia('App/Chat/Index');
+        $room->load('messages');
+        $room->messages()->delete();
+
+        broadcast(new ClearChat($room));
+        broadcast(new ChatMessageSent('Pokalbių kanalas išvalytas sėkmingai', auth()->user(), $room->id));
+
+        return redirect()->route('app.admin.chat.rooms', $room);
     }
 
     public function editRoom(UpdateChatRoomRequest $request, ChatRoom $room)

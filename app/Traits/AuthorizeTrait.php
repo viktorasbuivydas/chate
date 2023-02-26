@@ -19,4 +19,13 @@ trait AuthorizeTrait
     {
         return $user->hasRole('super admin');
     }
+
+    public function isSuperUser(User $user)
+    {
+        return $user->hasAnyRole([
+            'super admin',
+            'admin',
+            'moderator',
+        ]);
+    }
 }

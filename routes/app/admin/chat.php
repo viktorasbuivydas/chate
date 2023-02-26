@@ -14,6 +14,10 @@ Route::controller(ChatController::class)
         Route::post('/create', 'store')->name('room.store');
         Route::get('/{room}', 'room')->name('room.edit');
         Route::patch('/{room}', 'editRoom')->name('room.update');
+        Route::delete('/{room}/clear-chat', 'clearChat')
+            ->name('room.clear')
+            ->middleware('role:super admin');
+
         Route::delete('/{room}', 'deleteRoom')
             ->name('room.delete')
             ->middleware('role:super admin');

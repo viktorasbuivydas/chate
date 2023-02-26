@@ -2,7 +2,6 @@
 
 namespace App\Traits;
 
-use App\Models\User;
 use App\Models\ChatRoom;
 
 trait ChatTrait

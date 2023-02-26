@@ -24,7 +24,8 @@ createInertiaApp({
             .use(ZiggyVue, Ziggy)
             .use(Toaster, {
                 position: "bottom",
-                duration: 3000,
+                duration: 5000,
+                max: 3,
             })
             .mount(el);
     },

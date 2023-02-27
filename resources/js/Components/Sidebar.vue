@@ -1,7 +1,7 @@
 <template>
     <aside class="w-64 hidden md:flex" aria-label="Sidebar">
         <div
-            class="h-screen px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800 border border-0 border-r border-gray-200 dark:border-gray-700"
+            class="w-64 h-screen px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800 border border-0 border-r border-gray-200 dark:border-gray-700"
         >
             <a
                 href="https://flowbite.com/"
@@ -67,18 +67,21 @@
                         route="/app/cpanel"
                     />
                 </ul>
-
-                <Notification>
+                <Notification v-if="topic">
                     <template #headline> Pranešimas </template>
                     <div>
                         <Link href="/" class="font-bold text-gray-300"
-                            >Viktoras:</Link
+                            >{{ topic.user.name }}:</Link
                         >
-                        Kuriama... Jei turite klausimų, galite susisiekti
+                        {{ topic.content }}
                     </div>
                     <div class="text-xs mt-2">
-                        (Parašė: 2023m. Sausio 22d. - 22val. 41min)
+                        (Parašė: {{ topic.created_at }})
                     </div>
+                </Notification>
+                <Notification v-else>
+                    <template #headline> Pranešimas </template>
+                    <div>Pranešimų nėra</div>
                 </Notification>
             </div>
         </div>
@@ -93,13 +96,12 @@ import { usePage } from "@inertiajs/inertia-vue3";
 import { computed } from "vue";
 import useRole from "@/Use/useRole.js";
 
-const logout = () => {
-    Inertia.post(route("logout"));
-};
-
 const { canUserSeeAdminContent } = useRole();
 
 const roles = computed(() => {
     return usePage().props.value.roles;
+});
+const topic = computed(() => {
+    return usePage().props.value.topic?.data;
 });
 </script>

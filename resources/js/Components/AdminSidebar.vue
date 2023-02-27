@@ -1,7 +1,7 @@
 <template>
     <aside class="w-64 hidden md:flex" aria-label="Sidebar">
         <div
-            class="h-screen px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800 border border-0 border-r border-gray-200 dark:border-gray-700"
+            class="w-full h-screen px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800 border border-0 border-r border-gray-200 dark:border-gray-700"
         >
             <a
                 href="https://flowbite.com/"
@@ -70,19 +70,6 @@
                 />
                     -->
                 </ul>
-
-                <Notification>
-                    <template #headline> Pranešimas </template>
-                    <div>
-                        <Link href="/" class="font-bold text-gray-300"
-                            >Viktoras:</Link
-                        >
-                        Kuriama... Jei turite klausimų, galite susisiekti
-                    </div>
-                    <div class="text-xs mt-2">
-                        (Parašė: 2023m. Sausio 22d. - 22val. 41min)
-                    </div>
-                </Notification>
             </div>
         </div>
     </aside>

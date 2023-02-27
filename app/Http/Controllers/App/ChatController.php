@@ -29,7 +29,7 @@ class ChatController extends Controller
 
     public function messages(ChatRoom $chat)
     {
-        abort_if(!$this->isSuperUser(auth()->user()), 403);
+        abort_if(!$this->isSuperUser(auth()->user()) && $chat->private, 403);
 
         if (request()->wantsJson()) {
             $messages = ChatMessage::with('user')

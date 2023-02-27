@@ -33,17 +33,3 @@ window.Echo = new Echo({
     forceTLS: (import.meta.env.VITE_PUSHER_SCHEME ?? "https") === "https",
     enabledTransports: ["ws", "wss"],
 });
-
-window.Echo.join("online")
-    .here((people) => {
-        console.log(people);
-        // users.value = people;
-    })
-    .joining((user) => {
-        // users.value.push(user);
-        console.log("joining:" + user.id);
-    })
-    .leaving((user) => {
-        // users.value = users.value.filter((u) => u.id !== user.id);
-        console.log("leaving:" + user.id);
-    });

@@ -2,21 +2,38 @@
     <AppLayout>
         <div class="flex flex-col space-y-2">
             <template v-if="chatRooms.length > 0">
-                <Link
-                    v-for="room in chatRooms"
-                    v-if="canUserSeeAdminContent(roles)"
-                    class="py-5"
-                    :href="route('app.chat.messages.index', room)"
-                >
-                    <template #leading>
-                        <Material v-if="room.private" icon="lock" />
-                        <Material v-else icon="chat" />
-                    </template>
-                    <template #trailing>
-                        <Material icon="arrow_forward" />
-                    </template>
-                    {{ room.name }}
-                </Link>
+                <template v-for="room in chatRooms">
+                    <Link
+                        v-if="!room.private"
+                        class="py-5"
+                        :href="route('app.chat.messages.index', room)"
+                    >
+                        <template #leading>
+                            <Material v-if="room.private" icon="lock" />
+                            <Material v-else icon="chat" />
+                        </template>
+                        <template #trailing>
+                            <Material icon="arrow_forward" />
+                        </template>
+                        {{ room.name }}
+                    </Link>
+                    <Link
+                        v-else-if="
+                            room.private && canUserSeeAdminContent(roles)
+                        "
+                        class="py-5"
+                        :href="route('app.chat.messages.index', room)"
+                    >
+                        <template #leading>
+                            <Material v-if="room.private" icon="lock" />
+                            <Material v-else icon="chat" />
+                        </template>
+                        <template #trailing>
+                            <Material icon="arrow_forward" />
+                        </template>
+                        {{ room.name }}
+                    </Link>
+                </template>
             </template>
             <template v-else>
                 <BaseError icon="chat">

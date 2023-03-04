@@ -8,6 +8,7 @@ import { InertiaProgress } from "@inertiajs/progress";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import { ZiggyVue } from "../../vendor/tightenco/ziggy/dist/vue.m";
 import Toaster from "@meforma/vue-toaster";
+import vClickOutside from "click-outside-vue3";
 
 const appName =
     window.document.getElementsByTagName("title")[0]?.innerText || "Laravel";
@@ -42,6 +43,7 @@ createInertiaApp({
                 duration: 5000,
                 max: 3,
             })
+            .use(vClickOutside)
             .use(i18n)
             .mount(el);
     },

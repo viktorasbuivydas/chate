@@ -39,7 +39,7 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
-        if ($topic = Topic::appType()->first()) {
+        if ($topic = Topic::appType()->latest()->first()) {
             $topic = new TopicResource($topic);
         };
 

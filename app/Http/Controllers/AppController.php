@@ -8,7 +8,7 @@ class AppController extends Controller
 {
     public function index()
     {
-        $topic = Topic::find(1);
+        $topic = Topic::appType()->latest()->first();
 
         return inertia('App/Index', [
             'topic' => $topic,

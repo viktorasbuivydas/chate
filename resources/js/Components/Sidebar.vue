@@ -32,33 +32,6 @@
                         :link="route('app.chat.index')"
                         active-start="app.chat."
                     />
-                    <!-- <SidebarItem
-                    icon="forum"
-                    label="Forumas"
-                    route="/app/forum"
-                    badge="3/10"
-                />
-                <SidebarItem
-                    icon="folder"
-                    label="Failai"
-                    route="/app/files"
-                />
-                <SidebarItem
-                    icon="school"
-                    label="Pamokos"
-                    route="/app/tutorials"
-                />
-                <SidebarItem
-                    icon="signal_cellular_alt"
-                    label="Statistika"
-                    route="/app/statistic"
-                />
-                <SidebarItem
-                    icon="person"
-                    label="Profilis"
-                    route="/app/profile"
-                />
-                    -->
                     <SidebarItem
                         v-if="canUserSeeAdminContent(roles)"
                         icon="admin_panel_settings"
@@ -76,7 +49,7 @@
                         {{ topic.content }}
                     </div>
                     <div class="text-xs mt-2">
-                        (Parašė: {{ topic.created_at }})
+                        (Parašė: {{ topic.updated_at }})
                     </div>
                 </Notification>
                 <Notification v-else>

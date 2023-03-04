@@ -33,42 +33,9 @@
                     <SidebarItem
                         icon="topic"
                         label="Topic"
-                        :link="route('app.admin.chat.index')"
-                        active-start="app.admin.chat."
+                        :link="route('app.admin.topic.index')"
+                        active-start="app.admin.topic."
                     />
-
-                    <!-- <SidebarItem
-                    icon="forum"
-                    label="Forumas"
-                    route="/app/forum"
-                    badge="3/10"
-                />
-                <SidebarItem
-                    icon="folder"
-                    label="Failai"
-                    route="/app/files"
-                />
-                <SidebarItem
-                    icon="school"
-                    label="Pamokos"
-                    route="/app/tutorials"
-                />
-                <SidebarItem
-                    icon="signal_cellular_alt"
-                    label="Statistika"
-                    route="/app/statistic"
-                />
-                <SidebarItem
-                    icon="person"
-                    label="Profilis"
-                    route="/app/profile"
-                />
-                <SidebarItem
-                    icon="admin_panel_settings"
-                    label="Valdymas"
-                    route="/app/cpanel"
-                />
-                    -->
                 </ul>
             </div>
         </div>
@@ -77,10 +44,4 @@
 
 <script setup>
 import SidebarItem from "@/Components/Sidebar/Item.vue";
-import Notification from "@/Components/Notification.vue";
-import { Link } from "@inertiajs/inertia-vue3";
-
-const logout = () => {
-    Inertia.post(route("logout"));
-};
 </script>

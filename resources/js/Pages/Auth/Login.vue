@@ -6,7 +6,7 @@
                     <template #headline> Pranešimas </template>
                     Sveiki atvykę į uždarą programuotojų, dizainerių platformą.
                     Norėdami gauti pakvietimą, susisiekite su vienu iš projekte
-                    esančių vartotojų.
+                    esančiu vartotoju.
                 </Notification>
                 <div class="text-center font-bold text-3xl text-white">
                     Prisijungimas

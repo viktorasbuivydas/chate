@@ -15,10 +15,11 @@ class TopicResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'type' => $this->type,
             'content' => $this->content,
             'user' => $this->whenLoaded('user', fn () => new UserResource($this->user)),
-            'created_at' => $this->created_at?->diffForHumans(),
+            'updated_at' => $this->updated_at?->diffForHumans(),
         ];
     }
 }

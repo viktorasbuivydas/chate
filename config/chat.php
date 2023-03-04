@@ -3,10 +3,10 @@
 return [
     [
         'name' => 'Pagrindinis',
-        'is_private' => false,
+        'private' => false,
     ],
     [
         'name' => 'Programavimas',
-        'is_private' => false,
+        'private' => false,
     ]
 ];

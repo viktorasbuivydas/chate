@@ -6,6 +6,7 @@
                 v-if="showEmojiList"
                 @emoji_click="handleEmoji"
                 @close="closeEmojiPicker"
+                v-click-outside="closeEmojiPicker"
             />
         </div>
         <form class="absolute bottom-0 w-full" @submit.prevent="submit">

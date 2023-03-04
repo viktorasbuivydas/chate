@@ -84,7 +84,6 @@ import ChatInput from "@/Components/Chat/Input.vue";
 import useScroll from "@/Use/useScroll.js";
 import InfiniteLoading from "vue-infinite-loading";
 import { computed, onMounted, onUnmounted, ref } from "vue";
-import Link from "@/Components/Base/Link.vue";
 import { usePage } from "@inertiajs/inertia-vue3";
 import axios from "axios";
 
@@ -120,6 +119,9 @@ onMounted(() => {
         .listen("ChatMessageSent", (event) => {
             messages.value.push(event);
             scrollToBottom("chat-container");
+        })
+        .listen("ClearChat", (event) => {
+            messages.value = [];
         });
 });
 

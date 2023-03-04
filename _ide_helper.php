@@ -4,7 +4,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 9.52.0.
+ * Generated for Laravel 9.52.4.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -10779,12 +10779,12 @@
          * Clones a request and overrides some of its parameters.
          *
          * @return static 
-         * @param array $query The GET parameters
-         * @param array $request The POST parameters
-         * @param array $attributes The request attributes (parameters parsed from the PATH_INFO, ...)
-         * @param array $cookies The COOKIE parameters
-         * @param array $files The FILES parameters
-         * @param array $server The SERVER parameters
+         * @param array|null $query The GET parameters
+         * @param array|null $request The POST parameters
+         * @param array|null $attributes The request attributes (parameters parsed from the PATH_INFO, ...)
+         * @param array|null $cookies The COOKIE parameters
+         * @param array|null $files The FILES parameters
+         * @param array|null $server The SERVER parameters
          * @static 
          */ 
         public static function duplicate($query = null, $request = null, $attributes = null, $cookies = null, $files = null, $server = null)
@@ -17777,6 +17777,46 @@
         class Str {
          
     }
+            /**
+     * 
+     *
+     * @template TKey of array-key
+     * @template TValue
+     * @implements \ArrayAccess<TKey, TValue>
+     * @implements \Illuminate\Support\Enumerable<TKey, TValue>
+     */ 
+        class Collection {
+                    /**
+         * 
+         *
+         * @see \Spatie\LaravelRay\RayServiceProvider::registerMacros()
+         * @param string $description
+         * @static 
+         */ 
+        public static function ray($description = '')
+        {
+                        return \Illuminate\Support\Collection::ray($description);
+        }
+         
+    }
+            /**
+     * 
+     *
+     */ 
+        class Stringable {
+                    /**
+         * 
+         *
+         * @see \Spatie\LaravelRay\RayServiceProvider::registerMacros()
+         * @param string $description
+         * @static 
+         */ 
+        public static function ray($description = '')
+        {
+                        return \Illuminate\Support\Stringable::ray($description);
+        }
+         
+    }
      
 }
 
@@ -18958,6 +18998,37 @@
         public static function inertiaPage()
         {
                         return \Illuminate\Testing\TestResponse::inertiaPage();
+        }
+                    /**
+         * 
+         *
+         * @see \Spatie\LaravelRay\RayServiceProvider::registerMacros()
+         * @static 
+         */ 
+        public static function ray()
+        {
+                        return \Illuminate\Testing\TestResponse::ray();
+        }
+         
+    }
+     
+}
+
+    namespace Illuminate\Database\Query { 
+            /**
+     * 
+     *
+     */ 
+        class Builder {
+                    /**
+         * 
+         *
+         * @see \Spatie\LaravelRay\RayServiceProvider::registerMacros()
+         * @static 
+         */ 
+        public static function ray()
+        {
+                        return \Illuminate\Database\Query\Builder::ray();
         }
          
     }
@@ -22772,6 +22843,17 @@ namespace  {
             {
                                 /** @var \Illuminate\Database\Query\Builder $instance */
                                 return $instance->macroCall($method, $parameters);
+            }
+             
+                /**
+             * 
+             *
+             * @see \Spatie\LaravelRay\RayServiceProvider::registerMacros()
+             * @static 
+             */ 
+            public static function ray()
+            {
+                                return \Illuminate\Database\Query\Builder::ray();
             }
                     }
             class Event extends \Illuminate\Support\Facades\Event {}

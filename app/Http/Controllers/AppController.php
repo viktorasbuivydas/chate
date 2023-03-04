@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Topic;
+
 class AppController extends Controller
 {
     public function index()
     {
-        return inertia('App/Index');
+        $topic = Topic::appType()->latest()->first();
+
+        return inertia('App/Index', [
+            'topic' => $topic,
+        ]);
     }
 }

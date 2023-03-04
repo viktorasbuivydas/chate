@@ -1,10 +1,10 @@
 <?php
 
-use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\App\AppController;
 
-Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
-    Route::get('/app', function () {
-        return Inertia::render('App/Index');
-    })->name('app.index');
-});
+Route::controller(AppController::class)
+    ->middleware(['auth:sanctum', 'verified'])
+    ->group(function () {
+        Route::get('/app', 'index')->name('app.index');
+    });

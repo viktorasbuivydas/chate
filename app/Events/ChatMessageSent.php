@@ -2,7 +2,6 @@
 
 namespace App\Events;
 
-use App\Models\Chat;
 use App\Models\User;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -22,7 +21,7 @@ class ChatMessageSent implements ShouldBroadcast
     public function __construct(
         public string $message,
         public User $user,
-        public int $chatId,
+        public int $chatRoomId,
     ) {
     }
 
@@ -33,6 +32,6 @@ class ChatMessageSent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PresenceChannel('chat.' . $this->chatId);
+        return new PresenceChannel('chat.' . $this->chatRoomId);
     }
 }

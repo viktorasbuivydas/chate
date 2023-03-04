@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Chat;
+use App\Models\ChatRoom;
 use Illuminate\Database\Seeder;
 
 class ChatTableSeeder extends Seeder
@@ -17,7 +17,7 @@ class ChatTableSeeder extends Seeder
         $chatRooms = collect(config('chat'));
 
         $chatRooms->each(function ($chatRoom) {
-            Chat::create($chatRoom);
+            ChatRoom::create($chatRoom);
         });
     }
 }

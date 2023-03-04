@@ -7,7 +7,30 @@ export default function useRole() {
         );
     };
 
+    const renderRoleIcon = (role) => {
+        switch (role) {
+            case roles.SuperAdmin:
+                return "♔";
+            case roles.Admin:
+                return "♚";
+            case roles.Moderator:
+                return "✤";
+            case roles.Vip:
+                return "✵";
+            default:
+                return "";
+        }
+    };
+
+    const displayRoles = (userRoles) => {
+        return userRoles.map((role) => {
+            return renderRoleIcon(role);
+        });
+    };
+
     return {
         canUserSeeAdminContent,
+        renderRoleIcon,
+        displayRoles,
     };
 }

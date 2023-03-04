@@ -2,9 +2,11 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Topic;
 use Inertia\Middleware;
 use Illuminate\Http\Request;
 use App\Http\Resources\UserResource;
+use App\Http\Resources\TopicResource;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -37,6 +39,10 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        if ($topic = Topic::appType()->latest()->first()) {
+            $topic = new TopicResource($topic);
+        };
+
         return array_merge(parent::share($request), [
             'auth.user' => fn () => $request->user()
                 ? $request->user()->only('id', 'name')
@@ -44,6 +50,11 @@ class HandleInertiaRequests extends Middleware
             'roles' => fn () => $request->user()
                 ? $request->user()->getRoleNames()
                 : null,
+            'flash' => [
+                'success' => fn () => $request->session()->get('success'),
+                'error' => fn () => $request->session()->get('error'),
+            ],
+            'topic' => $topic,
         ]);
     }
 }

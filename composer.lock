@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "bccad903ed5e059c6442d702f755a206",
+=======
+    "content-hash": "2a9bc492294f9737655d146eb78b7d1d",
+>>>>>>> stage
     "packages": [
         {
             "name": "archtechx/enums",
@@ -823,6 +827,74 @@
                 "source": "https://github.com/facade/ignition-contracts/tree/1.0.2"
             },
             "time": "2020-10-16T08:27:54+00:00"
+        },
+        {
+            "name": "fakerphp/faker",
+            "version": "v1.21.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FakerPHP/Faker.git",
+                "reference": "92efad6a967f0b79c499705c69b662f738cc9e4d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FakerPHP/Faker/zipball/92efad6a967f0b79c499705c69b662f738cc9e4d",
+                "reference": "92efad6a967f0b79c499705c69b662f738cc9e4d",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4 || ^8.0",
+                "psr/container": "^1.0 || ^2.0",
+                "symfony/deprecation-contracts": "^2.2 || ^3.0"
+            },
+            "conflict": {
+                "fzaninotto/faker": "*"
+            },
+            "require-dev": {
+                "bamarni/composer-bin-plugin": "^1.4.1",
+                "doctrine/persistence": "^1.3 || ^2.0",
+                "ext-intl": "*",
+                "phpunit/phpunit": "^9.5.26",
+                "symfony/phpunit-bridge": "^5.4.16"
+            },
+            "suggest": {
+                "doctrine/orm": "Required to use Faker\\ORM\\Doctrine",
+                "ext-curl": "Required by Faker\\Provider\\Image to download images.",
+                "ext-dom": "Required by Faker\\Provider\\HtmlLorem for generating random HTML.",
+                "ext-iconv": "Required by Faker\\Provider\\ru_RU\\Text::realText() for generating real Russian text.",
+                "ext-mbstring": "Required for multibyte Unicode string functionality."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "v1.21-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Faker\\": "src/Faker/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "François Zaninotto"
+                }
+            ],
+            "description": "Faker is a PHP library that generates fake data for you.",
+            "keywords": [
+                "data",
+                "faker",
+                "fixtures"
+            ],
+            "support": {
+                "issues": "https://github.com/FakerPHP/Faker/issues",
+                "source": "https://github.com/FakerPHP/Faker/tree/v1.21.0"
+            },
+            "time": "2022-12-13T13:54:32+00:00"
         },
         {
             "name": "fig/http-message-util",
@@ -1784,6 +1856,7 @@
         },
         {
             "name": "laravel/framework",
+<<<<<<< HEAD
             "version": "v9.52.4",
             "source": {
                 "type": "git",
@@ -1794,6 +1867,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/9239128cfb4d22afefb64060dfecf53e82987267",
                 "reference": "9239128cfb4d22afefb64060dfecf53e82987267",
+=======
+            "version": "v9.52.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/framework.git",
+                "reference": "eb85cd9d72e5bfa54b4d0d9040786f26d6184a9e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/eb85cd9d72e5bfa54b4d0d9040786f26d6184a9e",
+                "reference": "eb85cd9d72e5bfa54b4d0d9040786f26d6184a9e",
+>>>>>>> stage
                 "shasum": ""
             },
             "require": {
@@ -1978,7 +2063,11 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
+<<<<<<< HEAD
             "time": "2023-02-22T14:38:06+00:00"
+=======
+            "time": "2023-02-14T14:51:14+00:00"
+>>>>>>> stage
         },
         {
             "name": "laravel/jetstream",
@@ -2433,6 +2522,7 @@
         },
         {
             "name": "league/flysystem",
+<<<<<<< HEAD
             "version": "3.12.3",
             "source": {
                 "type": "git",
@@ -2443,6 +2533,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/81e87e74dd5213795c7846d65089712d2dda90ce",
                 "reference": "81e87e74dd5213795c7846d65089712d2dda90ce",
+=======
+            "version": "3.12.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/flysystem.git",
+                "reference": "f6377c709d2275ed6feaf63e44be7a7162b0e77f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/f6377c709d2275ed6feaf63e44be7a7162b0e77f",
+                "reference": "f6377c709d2275ed6feaf63e44be7a7162b0e77f",
+>>>>>>> stage
                 "shasum": ""
             },
             "require": {
@@ -2504,7 +2606,11 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/flysystem/issues",
+<<<<<<< HEAD
                 "source": "https://github.com/thephpleague/flysystem/tree/3.12.3"
+=======
+                "source": "https://github.com/thephpleague/flysystem/tree/3.12.2"
+>>>>>>> stage
             },
             "funding": [
                 {
@@ -2520,7 +2626,11 @@
                     "type": "tidelift"
                 }
             ],
+<<<<<<< HEAD
             "time": "2023-02-18T15:32:41+00:00"
+=======
+            "time": "2023-01-19T12:02:19+00:00"
+>>>>>>> stage
         },
         {
             "name": "league/glide",
@@ -5670,6 +5780,7 @@
                 }
             ],
             "time": "2023-02-06T21:37:02+00:00"
+<<<<<<< HEAD
         },
         {
             "name": "spatie/laravel-ray",
@@ -5881,6 +5992,8 @@
                 }
             ],
             "time": "2023-02-10T09:24:13+00:00"
+=======
+>>>>>>> stage
         },
         {
             "name": "spatie/temporary-directory",
@@ -7883,6 +7996,7 @@
             "time": "2022-11-25T10:21:52+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "symfony/stopwatch",
             "version": "v6.2.5",
             "source": {
@@ -7954,6 +8068,17 @@
             },
             "dist": {
                 "type": "zip",
+=======
+            "name": "symfony/string",
+            "version": "v6.2.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/string.git",
+                "reference": "b2dac0fa27b1ac0f9c0c0b23b43977f12308d0b0"
+            },
+            "dist": {
+                "type": "zip",
+>>>>>>> stage
                 "url": "https://api.github.com/repos/symfony/string/zipball/b2dac0fa27b1ac0f9c0c0b23b43977f12308d0b0",
                 "reference": "b2dac0fa27b1ac0f9c0c0b23b43977f12308d0b0",
                 "shasum": ""
@@ -9706,6 +9831,7 @@
                 }
             ],
             "time": "2022-12-30T00:23:10+00:00"
+<<<<<<< HEAD
         },
         {
             "name": "fakerphp/faker",
@@ -9774,6 +9900,8 @@
                 "source": "https://github.com/FakerPHP/Faker/tree/v1.21.0"
             },
             "time": "2022-12-13T13:54:32+00:00"
+=======
+>>>>>>> stage
         },
         {
             "name": "fidry/cpu-core-counter",
@@ -10019,6 +10147,7 @@
         },
         {
             "name": "laravel/pint",
+<<<<<<< HEAD
             "version": "v1.6.0",
             "source": {
                 "type": "git",
@@ -10029,6 +10158,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/pint/zipball/e48e3fadd7863d6b7d03464f5c4f211a828b890f",
                 "reference": "e48e3fadd7863d6b7d03464f5c4f211a828b890f",
+=======
+            "version": "v1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/pint.git",
+                "reference": "e0a8cef58b74662f27355be9cdea0e726bbac362"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/pint/zipball/e0a8cef58b74662f27355be9cdea0e726bbac362",
+                "reference": "e0a8cef58b74662f27355be9cdea0e726bbac362",
+>>>>>>> stage
                 "shasum": ""
             },
             "require": {
@@ -10040,8 +10181,13 @@
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^3.14.4",
+<<<<<<< HEAD
                 "illuminate/view": "^10.0.0",
                 "laravel-zero/framework": "^10.0.0",
+=======
+                "illuminate/view": "^9.51.0",
+                "laravel-zero/framework": "^9.2.0",
+>>>>>>> stage
                 "mockery/mockery": "^1.5.1",
                 "nunomaduro/larastan": "^2.4.0",
                 "nunomaduro/termwind": "^1.15.1",
@@ -10081,6 +10227,7 @@
                 "issues": "https://github.com/laravel/pint/issues",
                 "source": "https://github.com/laravel/pint"
             },
+<<<<<<< HEAD
             "time": "2023-02-21T15:44:57+00:00"
         },
         {
@@ -10095,6 +10242,22 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/sail/zipball/758a914fc4da41f3f6ca5522c85902181b228bd1",
                 "reference": "758a914fc4da41f3f6ca5522c85902181b228bd1",
+=======
+            "time": "2023-02-14T16:31:02+00:00"
+        },
+        {
+            "name": "laravel/sail",
+            "version": "v1.20.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/sail.git",
+                "reference": "5ae072b182b1efbec927409e8a3ce3b1078cc42c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/5ae072b182b1efbec927409e8a3ce3b1078cc42c",
+                "reference": "5ae072b182b1efbec927409e8a3ce3b1078cc42c",
+>>>>>>> stage
                 "shasum": ""
             },
             "require": {
@@ -10142,7 +10305,11 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
+<<<<<<< HEAD
             "time": "2023-02-16T19:16:27+00:00"
+=======
+            "time": "2023-02-08T20:22:21+00:00"
+>>>>>>> stage
         },
         {
             "name": "mockery/mockery",
@@ -10584,6 +10751,7 @@
         },
         {
             "name": "phpunit/php-code-coverage",
+<<<<<<< HEAD
             "version": "9.2.25",
             "source": {
                 "type": "git",
@@ -10594,6 +10762,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/0e2b40518197a8c0d4b08bc34dfff1c99c508954",
                 "reference": "0e2b40518197a8c0d4b08bc34dfff1c99c508954",
+=======
+            "version": "9.2.24",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
+                "reference": "2cf940ebc6355a9d430462811b5aaa308b174bed"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/2cf940ebc6355a9d430462811b5aaa308b174bed",
+                "reference": "2cf940ebc6355a9d430462811b5aaa308b174bed",
+>>>>>>> stage
                 "shasum": ""
             },
             "require": {
@@ -10649,7 +10829,11 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/php-code-coverage/issues",
+<<<<<<< HEAD
                 "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/9.2.25"
+=======
+                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/9.2.24"
+>>>>>>> stage
             },
             "funding": [
                 {
@@ -10657,7 +10841,11 @@
                     "type": "github"
                 }
             ],
+<<<<<<< HEAD
             "time": "2023-02-25T05:32:00+00:00"
+=======
+            "time": "2023-01-26T08:26:55+00:00"
+>>>>>>> stage
         },
         {
             "name": "phpunit/php-file-iterator",

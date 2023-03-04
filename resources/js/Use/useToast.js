@@ -4,7 +4,6 @@ export default function useToast() {
     };
 
     const pushToast = (message, instance) => {
-        console.log(instance);
         instance.show(message);
     };
 

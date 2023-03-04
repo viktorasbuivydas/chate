@@ -39,10 +39,7 @@ return [
                 'port' => 6001,
                 'scheme' => 'http',
                 'useTLS' => false, // this is no error, we are talking without SSL to the WebSocket server from Laravel but your end-users will connect with SSL
-<<<<<<< HEAD
-=======
                 'encrypted' => false,
->>>>>>> stage
             ],
         ],
 

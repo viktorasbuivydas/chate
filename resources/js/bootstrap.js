@@ -27,10 +27,6 @@ window.Echo = new Echo({
     broadcaster: "pusher",
     key: import.meta.env.VITE_PUSHER_APP_KEY,
     wsHost: import.meta.env.VITE_PUSHER_HOST,
-<<<<<<< HEAD
-=======
-    wssHost: import.meta.env.VITE_PUSHER_HOST,
->>>>>>> stage
     cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER,
     wsPort: 6001,
     forceTLS: false,

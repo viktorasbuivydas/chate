@@ -2,7 +2,7 @@
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <template v-if="body.length > 0">
             <table
-                class="w-full text-sm text-left text-gray-500 dark:text-gray-400"
+                class="table-auto overwlow-x-auto w-auto sm:w-full text-sm text-left text-gray-500 dark:text-gray-400"
             >
                 <thead
                     class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"

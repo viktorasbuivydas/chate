@@ -1,22 +1,22 @@
 <template>
-    <aside class="w-64 hidden md:flex" aria-label="Sidebar">
+    <aside
+        :class="{
+            'w-64 hidden md:flex': !showOnMobile,
+            'w-full flex md:hidden': showOnMobile,
+        }"
+        aria-label="Sidebar"
+    >
         <div
-            class="w-64 h-screen px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800 border border-0 border-r border-gray-200 dark:border-gray-700"
+            class="h-screen px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800 border-0 border-r border-gray-200 dark:border-gray-700"
+            :class="{
+                'w-64': !showOnMobile,
+                'w-full': showOnMobile,
+            }"
         >
-            <a
-                href="https://flowbite.com/"
-                class="flex items-center pl-2.5 mb-5"
-            >
-                <img
-                    src="https://flowbite.com/docs/images/logo.svg"
-                    class="h-6 mr-3 sm:h-7"
-                    alt="Flowbite Logo"
-                />
-                <span
-                    class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"
-                    >CHATE.LT</span
-                >
-            </a>
+            <div class="p-2 hidden md:flex">
+                <Logo />
+            </div>
+
             <div class="flex flex-col">
                 <ul class="flex flex-col space-y-2">
                     <SidebarItem
@@ -44,7 +44,7 @@
                     <template #headline> Pranešimas </template>
                     <div>
                         <Link href="/" class="font-bold text-gray-300"
-                            >{{ topic.user.name }}:</Link
+                            >{{ topic.username }}:</Link
                         >
                         {{ topic.content }}
                     </div>
@@ -68,7 +68,14 @@ import { Link } from "@inertiajs/inertia-vue3";
 import { usePage } from "@inertiajs/inertia-vue3";
 import { computed } from "vue";
 import useRole from "@/Use/useRole.js";
+import Logo from "@/Components/Logo.vue";
 
+defineProps({
+    showOnMobile: {
+        type: Boolean,
+        default: false,
+    },
+});
 const { canUserSeeAdminContent } = useRole();
 
 const roles = computed(() => {

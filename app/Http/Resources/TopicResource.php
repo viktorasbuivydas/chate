@@ -18,7 +18,7 @@ class TopicResource extends JsonResource
             'id' => $this->id,
             'type' => $this->type,
             'content' => $this->content,
-            'user' => $this->whenLoaded('user', fn () => new UserResource($this->user)),
+            'username' => $this->whenLoaded('user', fn () => $this->user->name),
             'updated_at' => $this->updated_at?->diffForHumans(),
         ];
     }

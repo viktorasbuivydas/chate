@@ -9,8 +9,6 @@ Route::controller(TopicController::class)
     ->name('app.admin.topic.')
     ->group(function () {
         Route::get('/', 'index')->name('index');
-        Route::get('/create', 'create')->name('create');
-        Route::post('/create', 'store')->name('store');
         Route::get('/{topic}', 'edit')->name('edit');
         Route::patch('/{topic}', 'update')->name('update');
     });

@@ -1,7 +1,17 @@
 <template>
-    <aside class="w-64 hidden md:flex" aria-label="Sidebar">
+    <aside
+        :class="{
+            'w-64 hidden md:flex': !showOnMobile,
+            'w-full flex md:hidden': showOnMobile,
+        }"
+        aria-label="Sidebar"
+    >
         <div
-            class="w-full h-screen px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800 border border-0 border-r border-gray-200 dark:border-gray-700"
+            class="h-screen px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800 border border-0 border-r border-gray-200 dark:border-gray-700"
+            :class="{
+                'w-64': !showOnMobile,
+                'w-full': showOnMobile,
+            }"
         >
             <a
                 href="https://flowbite.com/"
@@ -44,4 +54,11 @@
 
 <script setup>
 import SidebarItem from "@/Components/Sidebar/Item.vue";
+
+defineProps({
+    showOnMobile: {
+        type: Boolean,
+        default: false,
+    },
+});
 </script>

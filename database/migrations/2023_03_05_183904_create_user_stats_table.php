@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('online', function (Blueprint $table) {
+        Schema::create('user_stats', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->boolean('is_mobile')->default(false);
+            $table->foreignId('stat_id')->constrained();
+            $table->integer('value');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('online');
+        Schema::dropIfExists('user_stats');
     }
 };

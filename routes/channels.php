@@ -22,5 +22,9 @@ Broadcast::channel('chat.{roomId}', function ($user, $roomId) {
 });
 
 Broadcast::channel('online', function ($user) {
-    return ['id' => $user->id];
+    return ['name' => $user->name];
+});
+
+Broadcast::channel('notification.{userId}', function ($user, $userId) {
+    return $user->id === (int) $userId;
 });

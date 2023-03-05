@@ -5,6 +5,7 @@ namespace App\Http\Controllers\App\Admin;
 use App\Models\Topic;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\TopicResource;
+use App\Http\Requests\CreateTopicRequest;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class TopicController extends Controller
@@ -20,34 +21,20 @@ class TopicController extends Controller
         ]);
     }
 
-    public function create()
-    {
-        return inertia('App/Admin/Topic/Create');
-    }
-
-    public function store()
-    {
-        $this->authorize('create', Topic::class);
-
-        $topic = Topic::create($this->validateTopic());
-
-        return redirect()->route('app.admin.topic.edit', $topic);
-    }
-
     public function edit(Topic $topic)
     {
-        $this->authorize('update', $topic);
-
         return inertia('App/Admin/Topic/Edit', [
             'topic' => new TopicResource($topic),
         ]);
     }
 
-    public function update(Topic $topic)
+    public function update(CreateTopicRequest $request, Topic $topic)
     {
-        $this->authorize('update', $topic);
-
-        $topic->update($this->validateTopic());
+        $topic->update([
+            'content' => $request->input('content'),
+            'user_id' => auth()->id(),
+            'type' => $topic->type,
+        ]);
 
         return redirect()->route('app.admin.topic.edit', $topic);
     }

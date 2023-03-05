@@ -2,7 +2,7 @@
     <GuestLayout>
         <div>
             <AuthContainer>
-                <Notification class="mx-auto" :canClose="false">
+                <Notification class="mx-auto mt-0" :canClose="false">
                     <template #headline> Pranešimas </template>
                     Sveiki atvykę į uždarą programuotojų, dizainerių platformą.
                     Norėdami gauti pakvietimą, susisiekite su vienu iš projekte
@@ -51,9 +51,10 @@
                         />
                     </BaseInputGroup>
 
-                    <div class="flex w-full">
-                        <BaseButton type="submit" class="mt-5"
-                            >Prisijungti</BaseButton
+                    <div class="flex justify-between items-center">
+                        <BaseButton type="submit">Prisijungti</BaseButton>
+                        <Link href="/forgot-password"
+                            >Pamiršote slaptažodį?</Link
                         >
                     </div>
                 </form>
@@ -63,7 +64,7 @@
 </template>
 
 <script setup>
-import { useForm } from "@inertiajs/inertia-vue3";
+import { useForm, Link } from "@inertiajs/inertia-vue3";
 import GuestLayout from "@/Layouts/GuestLayout.vue";
 import AuthContainer from "@/Components/Auth/Container.vue";
 import BaseInputGroup from "@/Components/Base/InputGroup.vue";

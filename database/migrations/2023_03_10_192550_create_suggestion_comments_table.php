@@ -13,9 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('stats', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
+        Schema::create('suggestion_comments', function (Blueprint $table) {
+            $table->foreignId('suggestion_id')->constrained();
+            $table->foreignId('user_id')->constrained();
+            $table->unsignedBigInteger('parent_id')->nullable();
+            $table->text('comment');
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stats');
+        Schema::dropIfExists('suggestion_comments');
     }
 };

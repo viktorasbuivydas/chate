@@ -12,6 +12,7 @@ Route::controller(ProfileController::class)
         Route::get('/', 'index')->name('index');
         Route::get('/password', 'password')->name('password');
         Route::get('/sessions', 'sessions')->name('sessions');
+        Route::get('/about/{name}', 'about')->name('about');
     });
 
 Route::put('/user/profile-information', [ProfileInformationController::class, 'update'])

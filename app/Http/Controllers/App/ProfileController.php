@@ -4,9 +4,11 @@ namespace App\Http\Controllers\App;
 
 use DB;
 use Carbon\Carbon;
+use App\Models\User;
 use Jenssegers\Agent\Agent;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
 
 class ProfileController extends Controller
 {
@@ -49,6 +51,15 @@ class ProfileController extends Controller
     public function password()
     {
         return inertia('App/Profile/Password');
+    }
+
+    public function about($name)
+    {
+        $user = User::where('name', $name)->firstOrFail();
+
+        return inertia('App/Profile/About', [
+            'user' => new UserResource($user),
+        ]);
     }
 
     protected function createAgent($session)

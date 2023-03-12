@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
+use App\Observers\UserObserver;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Jetstream\HasProfilePhoto;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -16,7 +16,6 @@ class User extends Authenticatable
     use HasFactory;
     use HasProfilePhoto;
     use Notifiable;
-    use TwoFactorAuthenticatable;
     use HasRoles;
 
     /**
@@ -38,8 +37,6 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
-        'two_factor_recovery_codes',
-        'two_factor_secret',
     ];
 
     /**
@@ -59,4 +56,21 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function stats()
+    {
+        return $this->hasMany(Stat::class);
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        User::observe(UserObserver::class);
+    }
+
+    public function ratings()
+    {
+        return $this->hasMany(SuggestionRating::class);
+    }
 }

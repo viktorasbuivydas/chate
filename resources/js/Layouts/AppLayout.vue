@@ -4,7 +4,7 @@
         <div class="flex grow flex-col">
             <Navbar />
             <div class="flex">
-                <div class="p-5 flex grow flex-col">
+                <div class="p-2 sm:p-5 flex grow flex-col">
                     <slot />
                 </div>
                 <Aside :key="route().current()" />

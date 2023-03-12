@@ -3,7 +3,7 @@
         <template #headline> Prisijungę </template>
         <div class="flex items-center space-x-2">
             <div
-                class="flex flex-col grow text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                class="overflow-hidden flex flex-col grow text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white"
             >
                 <a
                     v-for="user in users"

@@ -37,7 +37,11 @@ class HandleUserOnline
             ]
         );
 
-        $online->touch();
+        if ($online) {
+            $online->is_mobile = $device;
+            $online->updated_at = now();
+            $online->save();
+        }
 
         return $next($request);
     }

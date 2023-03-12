@@ -28,9 +28,16 @@ export default function useRole() {
         });
     };
 
+    const displayRolesAsString = (userRoles) => {
+        return userRoles.map((role) => {
+            return role;
+        });
+    };
+
     return {
         canUserSeeAdminContent,
         renderRoleIcon,
         displayRoles,
+        displayRolesAsString,
     };
 }

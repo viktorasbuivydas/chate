@@ -11,7 +11,7 @@
                 <Material :icon="icon" />
             </template>
             <span class="ml-3">{{ label }}</span>
-            <BaseBadge v-if="badge" :label="badge" />
+            <BaseBadge v-if="badge">{{ badge }}</BaseBadge>
             <BaseCount v-if="count" :label="count" />
         </Link>
     </li>

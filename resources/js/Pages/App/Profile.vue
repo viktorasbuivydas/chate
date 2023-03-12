@@ -2,7 +2,7 @@
     <AppLayout>
         <Breadcrumbs :show-app-item="true" current-page="Profilis" />
 
-        <div class="flex flex-col space-y-4mt-10 w-full">
+        <div class="flex flex-col space-y-4 mt-10 w-full">
             <ProfileTabs class="mb-4" />
             <slot />
         </div>

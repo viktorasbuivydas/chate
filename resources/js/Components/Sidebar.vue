@@ -33,6 +33,12 @@
                         active-start="app.chat."
                     />
                     <SidebarItem
+                        icon="reviews"
+                        label="Pasiūlymai"
+                        :link="route('app.suggestions.index')"
+                        active-start="app.suggestions."
+                    />
+                    <SidebarItem
                         v-if="canUserSeeAdminContent(roles)"
                         icon="admin_panel_settings"
                         label="Valdymas"

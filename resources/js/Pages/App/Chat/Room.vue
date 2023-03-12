@@ -85,7 +85,7 @@ const props = defineProps({
 const showInfinityLoaderAfterOneSecond = ref(false);
 const { scrollToBottom } = useScroll();
 const users = ref([]);
-const page = ref(1);
+const page = ref(2);
 const messages = ref([]);
 
 onMounted(() => {

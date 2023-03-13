@@ -23,7 +23,7 @@ class SuggestionResource extends JsonResource
             'negative_rating' => $this->negative_ratings_count,
             'comments_count' => $this->comments_count,
             'user_rating' => $this->whenLoaded('userRating', fn () => (bool) $this->userRating?->is_positive),
-            'comments' => $this->whenLoaded('comments', fn () => CommentResource::collection($this->comments)),
+            'comments' => $this->whenLoaded('comments', fn () => SuggestionCommentResource::collection($this->comments)),
         ];
     }
 }

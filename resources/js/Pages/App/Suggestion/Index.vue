@@ -20,7 +20,7 @@
             </template>
             <SuggestionSectionList id="suggestion-container">
                 <SuggestionSectionCards :items="suggestions" />
-                <template v-if="suggestions.data.length > 0">
+                <template v-if="suggestions.data.length > 3">
                     <infinite-loading @infinite="loadData"></infinite-loading>
                 </template>
             </SuggestionSectionList>

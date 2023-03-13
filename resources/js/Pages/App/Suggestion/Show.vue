@@ -1,6 +1,6 @@
 <template>
     <AppLayout>
-        <SuggestionSectionCommentContainer :list="suggestion.data.comments">
+        <SuggestionSectionCommentContainer :list="comments.data">
             <template #breadcrumbs>
                 <Breadcrumbs :showAppItem="true" currentPage="Pasiūlymai" />
             </template>
@@ -40,9 +40,10 @@
             </template>
             <div class="flex flex-col space-y-4">
                 <SuggestionSectionCommentCard
-                    v-for="item in suggestion.data.comments"
+                    v-for="item in comments.data"
                     :item="item"
                 />
+                <infinite-loading @infinite="loadData"></infinite-loading>
             </div>
         </SuggestionSectionCommentContainer>
     </AppLayout>
@@ -57,21 +58,28 @@ import BaseButton from "@/Components/Base/Button.vue";
 import BaseLink from "@/Components/Base/Link.vue";
 import InputError from "@/Components/InputError.vue";
 import { useForm } from "@inertiajs/inertia-vue3";
-import useToast from "@/Use/useToast.js";
-import { getCurrentInstance } from "vue";
 import SuggestionSectionCommentCard from "@/Components/App/Suggestion/Section/CommentCard.vue";
 import SuggestionSectionCard from "@/Components/App/Suggestion/Section/Card.vue";
 import SuggestionSectionCommentContainer from "@/Components/App/Suggestion/Section/CommentContainer.vue";
-
-const { getToastInstance, pushSuccessToast } = useToast();
-const instance = getToastInstance(getCurrentInstance());
+import InfiniteLoading from "vue-infinite-loading";
+import useToast from "@/Use/useToast.js";
+import { getCurrentInstance } from "vue";
+import { ref } from "vue";
 
 const props = defineProps({
     suggestion: {
         type: Object,
         required: true,
     },
+    comments: {
+        type: Array,
+        required: true,
+    },
 });
+
+const { getToastInstance, pushSuccessToast } = useToast();
+const instance = getToastInstance(getCurrentInstance());
+const page = ref(2);
 
 const form = useForm({
     comment: "",
@@ -84,5 +92,27 @@ const submit = () => {
             form.reset();
         },
     });
+};
+
+const loadData = async ($state) => {
+    setTimeout(() => {
+        axios
+            .get(
+                "/app/suggestions/" +
+                    props.suggestion.data.id +
+                    "/comments?page=" +
+                    page.value
+            )
+            .then((response) => {
+                if (response.data.data.length) {
+                    page.value += 1;
+
+                    props.comments.data.push(...response.data.data);
+                    $state.loaded();
+                } else {
+                    $state.complete();
+                }
+            });
+    }, 1000);
 };
 </script>

@@ -27,7 +27,7 @@
             <div
                 class="flow-root mt-5 overflow-y-auto h-auto"
                 :class="{
-                    ' sm:h-[365px]': list?.data.length > 2,
+                    ' sm:h-[430px]': list?.data.length > 2,
                 }"
             >
                 <slot />

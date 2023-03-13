@@ -118,6 +118,7 @@ onMounted(() => {
     if (error.value) {
         pushErrorToast(error.value, instance);
     }
+    console.log("mounted");
 });
 
 const closeNotificationsDropdown = () => {

@@ -4,10 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\App\InboxController;
 
 Route::controller(InboxController::class)
-    ->prefix('/app/profile')
+    ->prefix('/app/inbox')
     ->middleware(['auth:sanctum'])
-    ->name('app.profile.')
+    ->name('app.inbox.')
     ->group(function () {
         Route::get('/', 'index')->name('index');
-        Route::get('/new', 'new')->name('new');
     });

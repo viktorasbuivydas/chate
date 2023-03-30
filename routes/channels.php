@@ -28,3 +28,7 @@ Broadcast::channel('online', function ($user) {
 Broadcast::channel('notification.{userId}', function ($user, $userId) {
     return $user->id === (int) $userId;
 });
+
+Broadcast::channel('inbox.{userId}', function ($user, $userId) {
+    return $user->id === (int) $userId;
+});

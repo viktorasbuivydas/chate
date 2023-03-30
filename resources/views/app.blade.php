@@ -10,14 +10,22 @@
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+
     <!-- Scripts -->
     @routes
     @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
     @inertiaHead
+    @auth
+        <script>
+            window.userId = @json(auth()->id())
+        </script>
+        @vite(['resources/js/websockets.js'])
+    @endauth
 </head>
 
 <body class="font-sans antialiased">
     @inertia
 </body>
+
 
 </html>

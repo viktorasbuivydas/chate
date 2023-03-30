@@ -1,19 +1,9 @@
 <template>
-    <AppLayout>
-        <div class="w-full text-sm font-semibold text-gray-300 bg-gray-800 p-3">
-            <div
-                :href="route('app.chat.index')"
-                class="flex space-x-2 items-center justify-center text-base font-medium text-gray-500 rounded-lg bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
-            >
-                <div class="flex space-x-2">
-                    <div>Aktyvių -</div>
-                    <div class="font-bold">
-                        {{ online.length }}
-                    </div>
-                </div>
-            </div>
-        </div>
-        <ChatSection :messages-count="messages.length">
+    <AppLayout :show-online="false">
+        <InboxSection :messages-count="messages.length">
+            <template #aside>
+                <InboxChatButton v-for="item in 20" />
+            </template>
             <template #messages>
                 <!-- chat messages -->
                 <div
@@ -59,17 +49,18 @@
             </template>
             <template #input>
                 <!-- chat input -->
-                <ChatInput :chat="chatRoom" />
+                <InboxInput :chat="chatRoom" />
             </template>
-        </ChatSection>
+        </InboxSection>
     </AppLayout>
 </template>
 
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
-import ChatSection from "@/Components/ChatSection.vue";
+import InboxSection from "@/Components/InboxSection.vue";
 import ChatMessage from "@/Components/Chat/Message.vue";
-import ChatInput from "@/Components/Chat/Input.vue";
+import InboxInput from "@/Components/Inbox/Input.vue";
+import InboxChatButton from "@/Components/Inbox/ChatButton.vue";
 import useScroll from "@/Use/useScroll.js";
 import InfiniteLoading from "vue-infinite-loading";
 import { computed, onMounted, onUnmounted, ref } from "vue";
@@ -84,41 +75,19 @@ const props = defineProps({
 });
 const showInfinityLoaderAfterOneSecond = ref(false);
 const { scrollToBottom } = useScroll();
-const users = ref([]);
 const page = ref(1);
 const messages = ref([]);
 
 onMounted(() => {
-    scrollToBottom("chat-container");
+    // scrollToBottom("chat-container");
 
     setTimeout(() => {
         showInfinityLoaderAfterOneSecond.value = true;
     }, 1000);
-
-    window.Echo.join("chat." + props.chatRoom.id)
-        .here((people) => {
-            users.value = people;
-        })
-        .joining((user) => {
-            users.value.push(user);
-        })
-        .leaving((user) => {
-            users.value = users.value.filter((u) => u.id !== user.id);
-        })
-        .listen("ChatMessageSent", (event) => {
-            messages.value.push(event);
-            scrollToBottom("chat-container");
-        })
-        .listen("ClearChat", (event) => {
-            messages.value = [];
-        });
 });
 
-onUnmounted(() => {
-    window.Echo.leave("chat." + props.chatRoom.id);
-});
+onUnmounted(() => {});
 
-const online = computed(() => users.value);
 const user = computed(() => usePage().props.value.auth.user);
 
 const loadData = async ($state) => {

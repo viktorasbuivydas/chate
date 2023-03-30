@@ -73,4 +73,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(SuggestionRating::class);
     }
+
+    public function receivedMessages()
+    {
+        return $this->hasMany(Inbox::class, 'receiver_id');
+    }
+
+    public function sentMessages()
+    {
+        return $this->hasMany(Inbox::class, 'sender_id');
+    }
 }

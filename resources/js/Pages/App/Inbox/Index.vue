@@ -2,7 +2,7 @@
     <AppLayout :show-online="false">
         <InboxSection :messages-count="messages.length">
             <template #aside>
-                <InboxChatButton v-for="item in 20" />
+                <InboxChatButton v-for="user in users.data" :item="user" />
             </template>
             <template #messages>
                 <!-- chat messages -->
@@ -68,18 +68,24 @@ import { usePage } from "@inertiajs/inertia-vue3";
 import axios from "axios";
 
 const props = defineProps({
-    chatRoom: {
+    user: {
         type: Object,
         default: {},
+    },
+    users: {
+        type: Array,
     },
 });
 const showInfinityLoaderAfterOneSecond = ref(false);
 const { scrollToBottom } = useScroll();
 const page = ref(1);
 const messages = ref([]);
-
+const selectedUser = ref(null);
 onMounted(() => {
+    console.log(props.user);
     // scrollToBottom("chat-container");
+    selectedUser.value =
+        props.user.receivedMessages.length > 0 ? props.user[0] : null;
 
     setTimeout(() => {
         showInfinityLoaderAfterOneSecond.value = true;
@@ -92,17 +98,18 @@ const user = computed(() => usePage().props.value.auth.user);
 
 const loadData = async ($state) => {
     setTimeout(() => {
-        axios
-            .get("/app/chat/" + props.chatRoom.uuid + "?page=" + page.value)
-            .then((response) => {
-                if (response.data.data.length) {
-                    page.value += 1;
-                    messages.value.unshift(...response.data.data.reverse());
-                    $state.loaded();
-                } else {
-                    $state.complete();
-                }
-            });
+        console.log(selectedUser.value);
+        // axios
+        //     .get("/app/inbox/"?page=" + page.value)
+        //     .then((response) => {
+        //         if (response.data.data.length) {
+        //             page.value += 1;
+        //             messages.value.unshift(...response.data.data.reverse());
+        //             $state.loaded();
+        //         } else {
+        //             $state.complete();
+        //         }
+        //     });
     }, 1000);
 };
 

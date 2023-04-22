@@ -1,6 +1,6 @@
 <template>
     <button
-        class="flex justify-center space-x-0 sm:space-x-2 p-1 sm:p-2 hover:bg-gray-500 text-gray-500 hover:text-gray-300"
+        class="flex justify-center sm:justify-start space-x-0 sm:space-x-2 p-1 sm:p-2 hover:bg-gray-500 text-gray-500 hover:text-gray-300"
     >
         <div>
             <img
@@ -9,8 +9,18 @@
             />
         </div>
         <div class="hidden sm:flex flex-col space-y-1 text-left">
-            <div class="font-bold text-white">Viktoras</div>
-            <div class="">Lorem ipsum dolor sit amet...</div>
+            <div class="font-bold text-white">{{ item.user.name }}</div>
+            <div class="text-sm text-gray-400">
+                {{ item.message.message }}
+            </div>
         </div>
     </button>
 </template>
+<script setup>
+defineProps({
+    item: {
+        type: Object,
+        required: true,
+    },
+});
+</script>

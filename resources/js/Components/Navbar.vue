@@ -31,15 +31,9 @@
                 </template>
             </div>
             <div class="flex space-x-4 items-center md:order-2">
-                <div class="relative">
-                    <button @click="toggleMessages">
-                        <Material icon="chat_bubble" class="text-white" />
-                    </button>
-                    <NavbarDropdownMessages
-                        v-if="toggledMessages"
-                        v-click-outside="closeMessagesDropdown"
-                    />
-                </div>
+                <Link :href="route('app.inbox.index')">
+                    <Material icon="chat_bubble" class="text-white" />
+                </Link>
 
                 <div class="relative">
                     <button @click="toggleNotifications">
@@ -78,10 +72,9 @@
 <script setup>
 import { ref, computed } from "vue";
 import Material from "@/Components/Material.vue";
-import NavbarDropdownMessages from "@/Components/Navbar/Dropdown/Messages.vue";
 import NavbarDropdownNotifications from "@/Components/Navbar/Dropdown/Notifications.vue";
 import NavbarDropdownUser from "@/Components/Navbar/Dropdown/User.vue";
-import { usePage } from "@inertiajs/inertia-vue3";
+import { usePage, Link } from "@inertiajs/inertia-vue3";
 import useToast from "@/Use/useToast.js";
 import { onMounted, getCurrentInstance } from "vue";
 import Sidebar from "@/Components/Sidebar.vue";

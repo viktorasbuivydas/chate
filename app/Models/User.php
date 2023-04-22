@@ -79,6 +79,11 @@ class User extends Authenticatable
         return $this->hasMany(Inbox::class, 'receiver_id');
     }
 
+    public function lastReceivedUserMessage()
+    {
+        return $this->hasOne(Inbox::class, 'sender_id')->latestOfMany();
+    }
+
     public function sentMessages()
     {
         return $this->hasMany(Inbox::class, 'sender_id');

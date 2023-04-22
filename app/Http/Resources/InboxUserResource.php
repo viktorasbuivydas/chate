@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserResource extends JsonResource
+class InboxUserResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,9 +16,10 @@ class UserResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            // 'roles' => $this->when($this->getRoleNames(), $this->getRoleNames()),
-            'profile_photo_url' => $this->profile_photo_url,
+            'user' => new UserResource($this),
+            'message' => $this->whenLoaded('lastReceivedUserMessage', function () {
+                return new InboxResource($this->lastReceivedUserMessage);
+            }),
         ];
     }
 }

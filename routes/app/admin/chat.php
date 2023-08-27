@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\App\Admin\ChatController;
+use Illuminate\Support\Facades\Route;
 
 Route::controller(ChatController::class)
     ->prefix('/app/admin/chat')

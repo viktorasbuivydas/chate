@@ -31,7 +31,16 @@
                             >
                                 Uždaryti
                             </BaseLink>
-                            <BaseButton type="submit" class="ml-3">
+                            <BaseButton
+                                type="submit"
+                                class="ml-3"
+                                :class="{
+                                    'cursor-not-allowed':
+                                        form.comment === '' || form.processing,
+                                    'opacity-50':
+                                        form.comment === '' || form.processing,
+                                }"
+                            >
                                 Rašyti
                             </BaseButton>
                         </div>
@@ -86,6 +95,10 @@ const form = useForm({
 });
 
 const submit = () => {
+    if (form.comment === "") {
+        return;
+    }
+
     form.post(route("app.suggestions.comments.store", props.suggestion.data), {
         onSuccess: () => {
             pushSuccessToast("Komentaras sėkmingai įrašytas", instance);

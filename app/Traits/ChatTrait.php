@@ -8,9 +8,9 @@ trait ChatTrait
 {
     public function isRoomActive(ChatRoom $chatRoom)
     {
-        if (!$chatRoom->active) {
+        if (! $chatRoom->active) {
             return redirect()->route('app.chat.index')->with([
-                'error' => 'Pokalbių kambarys šiuo metu yra išjungtas'
+                'error' => 'Pokalbių kambarys šiuo metu yra išjungtas',
             ]);
         }
     }

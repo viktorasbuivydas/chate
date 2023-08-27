@@ -2,13 +2,12 @@
 
 namespace App\Events;
 
-use App\Models\User;
 use App\Models\ChatRoom;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Broadcasting\PresenceChannel;
-use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Queue\SerializesModels;
 
 class ClearChat implements ShouldBroadcast
 {
@@ -31,6 +30,6 @@ class ClearChat implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PresenceChannel('chat.' . $this->chatRoom->id);
+        return new PresenceChannel('chat.'.$this->chatRoom->id);
     }
 }

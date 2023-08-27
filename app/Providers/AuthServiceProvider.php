@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -28,7 +28,7 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('viewWebSocketsDashboard', function ($user = null) {
             return in_array($user?->email, [
-                'viktoras162@gmail.com'
+                'viktoras162@gmail.com',
             ]);
         });
     }

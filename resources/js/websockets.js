@@ -21,10 +21,10 @@ window.Echo = new Echo({
     enabledTransports: ["ws", "wss"],
 });
 
-console.log("Echo", window.Echo);
-console.log(window);
 // subscribe to private channel
-window.Echo.private("inbox." + window.userId);
-    .listen("InboxMessageSent", (e) => {
+window.Echo.private("inbox." + window.userId).listen(
+    "InboxMessageSent",
+    (e) => {
         console.log("InboxMessageSent", e);
-    });
+    }
+);

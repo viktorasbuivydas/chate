@@ -15,12 +15,12 @@ class Inbox extends Model
         'receiver_id',
         'sender_id',
         'message',
-        'is_read'
+        'is_read',
     ];
 
     protected $with = [
         'sender',
-        'receiver'
+        'receiver',
     ];
 
     public function sender()
@@ -36,5 +36,15 @@ class Inbox extends Model
     public function lastReceivedSenderMessage()
     {
         return $this->hasOne(Inbox::class, 'sender_id')->latestOfMany();
+    }
+
+    public function sentMessages()
+    {
+        return $this->hasMany(Inbox::class, 'sender_id');
+    }
+
+    public function receivedMessages()
+    {
+        return $this->hasMany(Inbox::class, 'receiver_id');
     }
 }

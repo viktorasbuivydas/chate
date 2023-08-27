@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\App\AdminController;
+use Illuminate\Support\Facades\Route;
 
 Route::controller(AdminController::class)
     ->prefix('/app/admin')

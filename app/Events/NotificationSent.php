@@ -3,9 +3,9 @@
 namespace App\Events;
 
 use App\Models\User;
-use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Queue\SerializesModels;
 
 class NotificationSent implements ShouldBroadcast
 {
@@ -20,6 +20,6 @@ class NotificationSent implements ShouldBroadcast
 
     public function broadcastOn(): PrivateChannel
     {
-        return new PrivateChannel('notification.' . $this->receiver->id);
+        return new PrivateChannel('notification.'.$this->receiver->id);
     }
 }

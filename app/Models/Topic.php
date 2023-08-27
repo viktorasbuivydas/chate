@@ -3,10 +3,10 @@
 namespace App\Models;
 
 use App\Enums\TopicTypes;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\MediaLibrary\MediaCollections\Models\Concerns\HasUuid;
 
 class Topic extends Model
@@ -17,7 +17,7 @@ class Topic extends Model
     protected $fillable = [
         'type',
         'content',
-        'user_id'
+        'user_id',
     ];
 
     protected $casts = [

@@ -3,12 +3,12 @@
 namespace App\Models;
 
 use App\Observers\UserObserver;
-use Laravel\Sanctum\HasApiTokens;
-use Laravel\Jetstream\HasProfilePhoto;
-use Spatie\Permission\Traits\HasRoles;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Jetstream\HasProfilePhoto;
+use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
@@ -76,12 +76,17 @@ class User extends Authenticatable
 
     public function receivedMessages()
     {
-        return $this->hasMany(Inbox::class, 'receiver_id');
+        return $this->hasMany(Inbox::class, 'receiver_id', 'id');
     }
 
     public function lastReceivedUserMessage()
     {
-        return $this->hasOne(Inbox::class, 'sender_id')->latestOfMany();
+        return $this->hasOne(Inbox::class, 'receiver_id')->latestOfMany();
+    }
+
+    public function lastSentUserMessage()
+    {
+        return $this->hasOne(Inbox::class, 'receiver_id')->latestOfMany();
     }
 
     public function sentMessages()

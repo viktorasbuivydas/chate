@@ -3,11 +3,11 @@
 namespace App\Events;
 
 use App\Models\User;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Broadcasting\PresenceChannel;
-use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Queue\SerializesModels;
 
 class ChatMessageSent implements ShouldBroadcast
 {
@@ -32,6 +32,6 @@ class ChatMessageSent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PresenceChannel('chat.' . $this->chatRoomId);
+        return new PresenceChannel('chat.'.$this->chatRoomId);
     }
 }

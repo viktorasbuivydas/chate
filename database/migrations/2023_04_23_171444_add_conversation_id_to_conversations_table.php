@@ -13,11 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('online', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->boolean('is_mobile')->default(false);
-            $table->timestamps();
+        Schema::table('inbox', function (Blueprint $table) {
+            $table->unsignedBigInteger('conversation_id')->after('sender_id')->nullable();
         });
     }
 
@@ -28,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('online');
+        Schema::table('inbox', function (Blueprint $table) {
+            $table->dropColumn('conversation_id');
+        });
     }
 };

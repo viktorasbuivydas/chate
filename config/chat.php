@@ -10,5 +10,5 @@ return [
         'name' => 'Programavimas',
         'private' => false,
         'active' => true,
-    ]
+    ],
 ];

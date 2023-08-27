@@ -2,12 +2,12 @@
 
 namespace Tests\Unit\Actions\Chat;
 
-use Tests\TestCase;
-use App\Events\ChatMessageSent;
 use App\Actions\Chat\CreateMessage;
+use App\Events\ChatMessageSent;
+use Illuminate\Support\Facades\Event;
 use Tests\Support\Traits\ChatTrait;
 use Tests\Support\Traits\UserTrait;
-use Illuminate\Support\Facades\Event;
+use Tests\TestCase;
 
 class ChatMessageTest extends TestCase
 {
@@ -29,7 +29,7 @@ class ChatMessageTest extends TestCase
         $data = [
             'message' => 'Hello World',
             'user_id' => $user->id,
-            'chat_room_id' => $chatRoom->id
+            'chat_room_id' => $chatRoom->id,
         ];
 
         app(CreateMessage::class)->handle($data);

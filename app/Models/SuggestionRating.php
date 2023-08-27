@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class SuggestionRating extends Model
 {
@@ -14,7 +14,7 @@ class SuggestionRating extends Model
     protected $fillable = [
         'user_id',
         'suggestion_id',
-        'is_positive'
+        'is_positive',
     ];
 
     protected $casts = [

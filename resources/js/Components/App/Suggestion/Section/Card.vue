@@ -28,16 +28,11 @@
             <ul class="flex mt-4 space-x-2">
                 <li class="w-full">
                     <button
-                        id="stats-tab"
-                        data-tabs-target="#stats"
-                        type="button"
-                        role="tab"
-                        aria-controls="stats"
-                        aria-selected="true"
                         @click="like(item)"
-                        class="flex items-center justify-center w-full space-x-2 p-2 rounded-tl-lg rounded-bl-lg focus:outline-none bg-gray-700 hover:bg-red-400"
+                        class="flex items-center justify-center w-full space-x-2 p-2 rounded-tl-lg rounded-bl-lg focus:outline-none hover:bg-red-400"
                         :class="{
-                            'bg-red-400': item.user_rating === true,
+                            'bg-gray-700': !item.user_rating,
+                            'bg-red-400': item.user_rating,
                         }"
                     >
                         <Material icon="favorite" />
@@ -48,16 +43,11 @@
                 </li>
                 <li class="w-full">
                     <button
-                        id="about-tab"
-                        data-tabs-target="#about"
-                        type="button"
-                        role="tab"
-                        aria-controls="about"
-                        aria-selected="false"
                         @click="dislike(item)"
-                        class="flex items-center justify-center w-full space-x-2 p-2 focus:outline-none bg-gray-700 hover:bg-blue-400 rounded-tr-lg rounded-br-lg"
+                        class="flex items-center justify-center w-full space-x-2 p-2 focus:outline-none hover:bg-blue-400 rounded-tr-lg rounded-br-lg"
                         :class="{
-                            'bg-blue-400': item.user_rating === false,
+                            'bg-gray-700': item.user_rating,
+                            'bg-blue-400': !item.user_rating,
                         }"
                     >
                         <Material icon="thumb_down" />

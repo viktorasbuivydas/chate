@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers\App;
 
-use App\Models\User;
-use App\Models\Inbox;
-use App\Models\Online;
+use App\Models\Conversation;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\UserResource;
 use App\Http\Resources\InboxResource;
-use App\Http\Resources\InboxUserResource;
+use App\Http\Resources\ConversationCollectionResource;
+use App\Http\Requests\CreateConversationMessageRequest;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class InboxController extends Controller
@@ -17,12 +15,42 @@ class InboxController extends Controller
 
     public function index()
     {
-        $users = User::withWhereHas('lastReceivedUserMessage')
+        $conversations = Conversation::query()
+            ->withWhereHas('latestMessage', function ($query) {
+                $query->where('sender_id', auth()->id())
+                    ->orWhere('receiver_id', auth()->id());
+            })
             ->get();
-        // $messages = InboxResource::collection($users);
-        // dd($users);
+
         return inertia('App/Inbox/Index', [
-            'users' => InboxUserResource::collection($users),
+            'conversations' => ConversationCollectionResource::collection($conversations),
+        ]);
+    }
+
+    public function show(Conversation $conversation)
+    {
+        $conversation = Conversation::query()
+            ->with('messages', fn ($query) => $query->paginate())
+            ->where('uuid', $conversation->uuid)
+            ->first();
+
+        return response()->json([
+            'messages' => InboxResource::collection($conversation->messages),
+        ]);
+    }
+
+    public function store(Conversation $conversation, CreateConversationMessageRequest $request)
+    {
+        $conversation->load('messages');
+
+        $conversation->messages()->create([
+            'sender_id' => auth()->id(),
+            'receiver_id' => $conversation->receiver_id,
+            'message' => $request->input('message'),
+        ]);
+
+        return response()->json([
+            'message' => 'Message sent successfully.',
         ]);
     }
 }

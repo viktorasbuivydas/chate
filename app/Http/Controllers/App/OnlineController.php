@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\App;
 
-use App\Models\Online;
 use App\Http\Controllers\Controller;
+use App\Models\Online;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class OnlineController extends Controller

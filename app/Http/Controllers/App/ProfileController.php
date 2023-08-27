@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\App;
 
-use DB;
-use Carbon\Carbon;
-use App\Models\User;
-use Jenssegers\Agent\Agent;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
+use App\Models\User;
+use Carbon\Carbon;
+use DB;
+use Illuminate\Http\Request;
+use Jenssegers\Agent\Agent;
 
 class ProfileController extends Controller
 {

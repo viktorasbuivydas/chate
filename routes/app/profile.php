@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\App\ProfileController;
 use App\Http\Controllers\App\ProfileInformationController;
+use Illuminate\Support\Facades\Route;
 
 Route::controller(ProfileController::class)
     ->prefix('/app/profile')
@@ -16,5 +16,5 @@ Route::controller(ProfileController::class)
     });
 
 Route::put('/user/profile-information', [ProfileInformationController::class, 'update'])
-    ->middleware([config('fortify.auth_middleware', 'auth') . ':' . config('fortify.guard')])
+    ->middleware([config('fortify.auth_middleware', 'auth').':'.config('fortify.guard')])
     ->name('user-profile-information.update');

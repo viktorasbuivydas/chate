@@ -3,14 +3,13 @@
 namespace Database\Factories;
 
 use App\Models\ChatRoom;
-use Illuminate\Support\Str;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Database\Eloquent\Factories\Factory;
-
+use Illuminate\Foundation\Testing\WithFaker;
 
 class ChatRoomFactory extends Factory
 {
     use WithFaker;
+
     /**
      * The name of the factory's corresponding model.
      *

@@ -19,7 +19,7 @@
         <script>
             window.userId = @json(auth()->id())
         </script>
-        @vite(['resources/js/websockets.js'])
+        @vite('resources/js/websockets.js')
     @endauth
 </head>
 

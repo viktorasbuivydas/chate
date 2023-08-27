@@ -6,7 +6,6 @@ use App\Models\User;
 
 trait AuthorizeTrait
 {
-
     public function isAdmin(User $user)
     {
         return $user->hasAnyRole([

@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\App\Admin;
 
-use App\Models\ChatRoom;
-use App\Events\ClearChat;
-use App\Events\MessageSent;
 use App\Events\ChatMessageSent;
+use App\Events\ClearChat;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\ChatRoomResource;
 use App\Http\Requests\CreateChatRoomRequest;
 use App\Http\Requests\UpdateChatRoomRequest;
+use App\Http\Resources\ChatRoomResource;
+use App\Models\ChatRoom;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class ChatController extends Controller

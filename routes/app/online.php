@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\App\OnlineController;
+use Illuminate\Support\Facades\Route;
 
 Route::controller(OnlineController::class)
     ->prefix('/app/online')

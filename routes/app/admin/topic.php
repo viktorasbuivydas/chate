@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\App\Admin\TopicController;
+use Illuminate\Support\Facades\Route;
 
 Route::controller(TopicController::class)
     ->prefix('/app/admin/topic')

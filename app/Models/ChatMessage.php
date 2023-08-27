@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class ChatMessage extends Model
 {
@@ -13,7 +13,7 @@ class ChatMessage extends Model
         'message',
         'user_id',
         'chat_room_id',
-        'answered_message_id'
+        'answered_message_id',
     ];
 
     public function user()

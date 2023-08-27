@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\App;
 
-use App\Models\User;
-use App\Models\Suggestion;
-use Illuminate\Http\Request;
-use App\Models\SuggestionComment;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\SuggestionResource;
 use App\Http\Requests\CreateSuggestionRequest;
 use App\Http\Resources\SuggestionCommentResource;
+use App\Http\Resources\SuggestionResource;
+use App\Models\Suggestion;
+use App\Models\SuggestionComment;
+use App\Models\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Http\Request;
 
 class SuggestionController extends Controller
 {
@@ -67,6 +67,7 @@ class SuggestionController extends Controller
 
         return SuggestionCommentResource::collection($comments);
     }
+
     public function show(Suggestion $suggestion)
     {
         $suggestion->load([
@@ -86,7 +87,6 @@ class SuggestionController extends Controller
         $comments = SuggestionComment::where('suggestion_id', $suggestion->id)
             ->latest()
             ->paginate();
-
 
         return inertia('App/Suggestion/Show', [
             'suggestion' => new SuggestionResource($suggestion),

@@ -115,14 +115,16 @@ import ChatDropdown from "@/Components/Chat/Dropdown.vue";
 import EmojiPicker from "@/Components/EmojiPicker.vue";
 
 const props = defineProps({
-    chat: {
+    conversation: {
         type: Object,
         required: true,
     },
 });
 
+console.log(props.conversation);
 const form = useForm({
     message: "",
+    // receiver_id: props.conversation.receiver.id,
 });
 
 const loading = ref(false);
@@ -132,9 +134,10 @@ const showEmojiList = ref(false);
 const submit = () => {
     loading.value = true;
     closeEmojiPicker();
+    console.log(props.conversation)
     form.post(
-        route("app.chat.messages.store", {
-            chat: props.chat,
+        route("app.inbox.store", {
+            conversation: props.conversation.uuid,
         }),
         {
             onSuccess: () => {

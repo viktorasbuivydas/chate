@@ -13,7 +13,7 @@ class MustWaitSecondsException extends Exception
     public function render($request)
     {
         return response()->json([
-            'message' => 'Antispam apsauga, prašome bandyti dar kartą po ' . $this->seconds . ' sekundžių',
+            'message' => 'Antispam apsauga, prašome bandyti dar kartą po '.$this->seconds.' sekundžių',
         ], 400);
     }
 }

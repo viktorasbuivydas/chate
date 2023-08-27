@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class SuggestionComment extends Model
 {
@@ -13,11 +13,11 @@ class SuggestionComment extends Model
         'user_id',
         'suggestion_id',
         'comment',
-        'parent_id'
+        'parent_id',
     ];
 
     protected $with = [
-        'user'
+        'user',
     ];
 
     public function user()

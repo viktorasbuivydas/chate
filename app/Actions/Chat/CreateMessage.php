@@ -2,10 +2,10 @@
 
 namespace App\Actions\Chat;
 
-use App\Models\User;
-use App\Models\ChatMessage;
-use Illuminate\Support\Arr;
 use App\Events\ChatMessageSent;
+use App\Models\ChatMessage;
+use App\Models\User;
+use Illuminate\Support\Arr;
 
 class CreateMessage
 {

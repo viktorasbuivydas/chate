@@ -12,7 +12,7 @@ abstract class TestCase extends BaseTestCase
     {
         parent::setUp();
 
-        // run migrations 
+        // run migrations
         $this->artisan('migrate:fresh');
     }
 }

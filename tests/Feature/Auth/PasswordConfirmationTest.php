@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\Auth;
 
-use Tests\TestCase;
 use App\Models\User;
-use Tests\Support\Traits\UserTrait;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\Support\Traits\UserTrait;
+use Tests\TestCase;
 
 class PasswordConfirmationTest extends TestCase
 {

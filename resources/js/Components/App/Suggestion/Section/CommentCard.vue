@@ -1,7 +1,7 @@
 <template>
     <div>
         <div
-            class="flex items-center space-x-4 border rounded-lg border-gray-700 p-2"
+            class="flex items-center space-x-4 border rounded-lg border-gray-700 hover:bg-gray-700 p-2"
         >
             <div class="flex-shrink-0">
                 <img

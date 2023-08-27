@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\MediaLibrary\MediaCollections\Models\Concerns\HasUuid;
 
 class ChatRoom extends Model
@@ -19,13 +19,13 @@ class ChatRoom extends Model
         'private',
         'active',
         'password',
-        'parameters'
+        'parameters',
     ];
 
     protected $casts = [
         'private' => 'boolean',
         'active' => 'boolean',
-        'parameters' => 'array'
+        'parameters' => 'array',
     ];
 
     public function messages(): HasMany
